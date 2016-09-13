@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{88528d95-8de4-48cc-ab40-8d07004fe565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\include">
+      <UniqueIdentifier>{5168657c-6ada-47ed-a062-636b9493e0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\source">
+      <UniqueIdentifier>{5b7bd9b4-557e-4554-8e9f-d0c3bc489c6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Msgpack">
+      <UniqueIdentifier>{2c4a667b-dbe8-47a1-8426-3c78ed369e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Msgpack\include">
+      <UniqueIdentifier>{5c97d173-d8e6-4700-8dd5-904b69fcd863}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Msgpack\source">
+      <UniqueIdentifier>{0fd94358-c2f2-4205-883a-78641fea3e1b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\Common\Log.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\LogMsg.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\Type.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\RuntimeError.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\DataBuffer.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\PackBuffer.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\PackDefine.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\Packer.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\PackTuple.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\Sysdep.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\Unpacker.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\CapCompresser.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\XxteaEncrypter.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\stdint_msvc2008.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\WinSnprintf.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\DataFixBuffer.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\LightInkVersion.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\TypeList.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\TypeListDefine.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\TypeTool.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\Config.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\UserMemory.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Common\LogMsg.cpp">
+      <Filter>Common\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\RuntimeError.cpp">
+      <Filter>Common\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\Msgpack\PackBuffer.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\Msgpack\Packer.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\Msgpack\PackerAdaptor.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\Msgpack\Unpacker.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\Msgpack\UnpackerAdaptor.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Msgpack\DataBuffer.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Msgpack\CapCompresser.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Msgpack\XxteaEncrypter.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\WinSnprintf.c">
+      <Filter>Common\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\include\Msgpack\DataFixBuffer.cpp">
+      <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\LightInkVersion.cpp">
+      <Filter>Common\source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
