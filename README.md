@@ -15,7 +15,7 @@ C++ for MsgPack from project LightInk
 ##linux
 
 * install cmake
-* makedir ./Linux/build
+* mkdir ./Linux/build
 * cd ./Linux/build
 * cmake ../
 * make
