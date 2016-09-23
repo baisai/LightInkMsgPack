@@ -42,9 +42,6 @@ namespace LightInk
 		RE_ThreadSelfExit = 1,
 		RE_UnknownError = 2,
 
-		RE_Log_HaveInited,
-		RE_Log_OpenFileFailed,
-
 		RE_Msgpack_TypeError,
 		RE_Msgpack_StringLenError,
 		RE_Msgpack_ArrayLenError,
