@@ -55,7 +55,7 @@ void test_compress_encrypt()
 	{
 		char * bd = buff.data();
 		char * ucbd = uncompressBuff.data();
-		for (int i = 0; i < buff.size(); i++)
+		for (size_t i = 0; i < buff.size(); i++)
 		{
 			if (*bd != * ucbd)
 			{
@@ -84,9 +84,9 @@ void test_compress_encrypt()
 	{
 		char * bd = buff.data();
 		char * uxbd = unxxteaBuff.data();
-		for (int i = 0; i < buff.size(); i++)
+		for (size_t i = 0; i < buff.size(); i++)
 		{
-			if (*bd != *uxbd)
+			if (*(bd + i) != *(uxbd + i))
 			{
 				success = false;
 				break;

@@ -8,7 +8,6 @@ set( sourceRootPath ${LightInkMsgPack_SOURCE_DIR}/../../src )
 
 set( middlePath Common )
 set( sourceFile 
-	LogMsg.cpp
 	RuntimeError.cpp
 	LightInkVersion.cpp
 	WinSnprintf.c

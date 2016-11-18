@@ -179,7 +179,6 @@
     <ClInclude Include="..\..\include\Common\Config.h" />
     <ClInclude Include="..\..\include\Common\LightInkVersion.h" />
     <ClInclude Include="..\..\include\Common\Log.h" />
-    <ClInclude Include="..\..\include\Common\LogMsg.h" />
     <ClInclude Include="..\..\include\Common\RuntimeError.h" />
     <ClInclude Include="..\..\include\Common\stdint_msvc2008.h" />
     <ClInclude Include="..\..\include\Common\Type.h" />
@@ -207,7 +206,6 @@
     <ClCompile Include="..\..\include\Msgpack\Unpacker.cpp" />
     <ClCompile Include="..\..\include\Msgpack\UnpackerAdaptor.cpp" />
     <ClCompile Include="..\..\src\Common\LightInkVersion.cpp" />
-    <ClCompile Include="..\..\src\Common\LogMsg.cpp" />
     <ClCompile Include="..\..\src\Common\RuntimeError.cpp" />
     <ClCompile Include="..\..\src\Common\WinSnprintf.c" />
     <ClCompile Include="..\..\src\Msgpack\CapCompresser.cpp" />
