@@ -160,7 +160,7 @@ namespace LightInk
 	RuntimeError DataFixBuffer<FixLen>::read(char * data, uint32 size, uint32 offset)
 	{
 		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(char * data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //³¬¹ýÎ»ÖÃ
+		if (m_writePos - offset < size) //è¶…è¿‡ä½ç½®
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
 		}
@@ -172,7 +172,7 @@ namespace LightInk
 	RuntimeError DataFixBuffer<FixLen>::read(signed char * data, uint32 size, uint32 offset)
 	{
 		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(signed char * data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //³¬¹ýÎ»ÖÃ
+		if (m_writePos - offset < size) //è¶…è¿‡ä½ç½®
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
 		}
@@ -184,7 +184,7 @@ namespace LightInk
 	RuntimeError DataFixBuffer<FixLen>::read(unsigned char * data, uint32 size, uint32 offset)
 	{
 		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(unsigned char * data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //³¬¹ýÎ»ÖÃ
+		if (m_writePos - offset < size) //è¶…è¿‡ä½ç½®
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
 		}
@@ -196,7 +196,7 @@ namespace LightInk
 	RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)
 	{
 		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //³¬¹ýÎ»ÖÃ
+		if (m_writePos - offset < size) //è¶…è¿‡ä½ç½®
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
 		}
@@ -208,7 +208,7 @@ namespace LightInk
 	RuntimeError DataFixBuffer<FixLen>::read(char ** data, uint32 size, uint32 offset)
 	{
 		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(char ** data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //³¬¹ýÎ»ÖÃ
+		if (m_writePos - offset < size) //è¶…è¿‡ä½ç½®
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
 		}

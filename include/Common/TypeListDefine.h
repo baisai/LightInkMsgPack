@@ -27,7 +27,7 @@
 
 #include "TypeList.h"
 /*
-	--luaÉú³É
+	--luaç”Ÿæˆ
 	function create_typelist(count)
 	local allStr = "#define LIGHTINK_TYPELIST_1(T1) ::LightInk::TypeList<T1, ::LightInk::TypeNil>\n\n"
 	for k = 2, count do

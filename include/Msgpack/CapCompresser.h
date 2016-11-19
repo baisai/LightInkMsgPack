@@ -130,7 +130,7 @@ namespace LightInk
 						LogTraceReturn(e);
 					}
 				}
-				while (idx < 8) //0Ìî³ä
+				while (idx < 8) //0å¡«å……
 				{
 					if (flag & 1u << idx && i < pos)
 					{

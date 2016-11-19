@@ -1091,7 +1091,7 @@ namespace LightInk
 			memcpy(&d, &header, sizeof(header));
 			LogTraceReturn(RE_Success);
 		}
-		//类型不对
+		//绫诲瀷涓嶅
 		LogTraceReturn(RE_Msgpack_TypeError);
 	}
 
@@ -1166,7 +1166,7 @@ namespace LightInk
 			memcpy(&d, &header, sizeof(header));
 			LogTraceReturn(RE_Success);
 		}
-		//类型不对
+		//绫诲瀷涓嶅
 		LogTraceReturn(RE_Msgpack_TypeError);
 	}
 
@@ -1292,7 +1292,7 @@ namespace LightInk
 			}
 			break;
 		}
-		//类型不对
+		//绫诲瀷涓嶅
 		LogTraceReturn(RE_Msgpack_TypeError);
 	}
 

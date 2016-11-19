@@ -80,7 +80,7 @@ namespace LightInk
 	{
 		typedef D Result;
 	};
-	//ÕÒ²»µ½·µ»ØÌØ¶¨ÀàĞÍ
+	//æ‰¾ä¸åˆ°è¿”å›ç‰¹å®šç±»å‹
 	template <typename H, typename T, typename D>
 	struct TypeListAtDefault<TypeList<H, T>, 1, D>
 	{

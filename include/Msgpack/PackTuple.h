@@ -28,7 +28,7 @@
 #include "Common/TypeListDefine.h"
 
 /*
---luaÉú³É
+--luaç”Ÿæˆ
 function create_tuple(count)
 	local allStr = "template <"
 	for k = 1, count + 1 do

@@ -29,7 +29,7 @@
 #include "Unpacker.h"
 
 /*
---luaÉú³É
+--luaç”Ÿæˆ
 function create_packargs(count)
 	local allStr = "template <typename TBuffer>\ninline RuntimeError pack_args(TBuffer & buffer)\n{ return RE_Success; }\ntemplate <typename TBuffer>\ninline RuntimeError unpack_args(TBuffer & buffer)\n{ return RE_Success; }\n\n"
 	for k = 1, count do
