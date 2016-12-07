@@ -10,7 +10,7 @@ C++ for MsgPack from project LightInk
 * install vs2012
 * open file ./windows/LightInkMsgPack.sln
 * build
-* the file output in ./windows/Debug(Release)/
+* the file output in ./bin/Debug(Release)/
 
 ##linux
 
@@ -19,5 +19,5 @@ C++ for MsgPack from project LightInk
 * cd ./Linux/build
 * cmake ../
 * make
-* the file output in ./Linux/bin/
+* the file output in ./bin/Debug(Release)/
 
