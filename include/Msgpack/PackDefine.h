@@ -31,7 +31,7 @@
 /*
 --lua生成
 function create_packargs(count)
-	local allStr = "template <typename TBuffer>\ninline RuntimeError pack_args(TBuffer & buffer)\n{ return RE_Success; }\ntemplate <typename TBuffer>\ninline RuntimeError unpack_args(TBuffer & buffer)\n{ return RE_Success; }\n\n"
+	local allStr = "template <typename TBuffer>\ninline RuntimeError pack_args(TBuffer & buffer)\n{ return RE_Success; }\ntemplate <typename TBuffer>\ninline RuntimeError unpack_args(const TBuffer & buffer)\n{ return RE_Success; }\n\n"
 	for k = 1, count do
 		local str = "template <typename TBuffer, "
 		local str1 = "inline RuntimeError pack_args(TBuffer & buffer, "
@@ -107,7 +107,7 @@ namespace LightInk
 	inline RuntimeError pack_args(TBuffer & buffer)
 	{ return RE_Success; }
 	template <typename TBuffer>
-	inline RuntimeError unpack_args(TBuffer & buffer)
+	inline RuntimeError unpack_args(const TBuffer & buffer)
 	{ return RE_Success; }
 
 	template <typename TBuffer, typename T1>

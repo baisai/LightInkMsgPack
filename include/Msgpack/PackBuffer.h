@@ -1,6 +1,7 @@
 
 
 
+
 /* Copyright ChenDong(Wilbur), email <baisaichen@live.com>. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,7 +22,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-
 #ifndef LIGHTINK_MSGPACK_PACKBUFFER_H_
 #define LIGHTINK_MSGPACK_PACKBUFFER_H_
 
@@ -49,6 +49,7 @@ namespace LightInk
 
 		uint32 size() const;
 		uint32 buffer_size() const;
+		uint32 free_size() const;
 
 		void write_pos(uint32 pos);
 		uint32 write_pos() const;

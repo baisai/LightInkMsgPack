@@ -24,6 +24,7 @@
 #ifndef LIGHTINK_COMMON_TYPE_H_
 #define LIGHTINK_COMMON_TYPE_H_
 
+#include "Common/Config.h"
 #include "Common/WinSnprintf.h"
 
 #define LIGHTINK_DISABLE_COPY(name) \
@@ -42,6 +43,24 @@
 # include <stdint.h>
 #endif
 
+#ifdef WIN32
+#define strtoll _strtoi64
+#define strtoull _strtoui64
+#endif
+
+#if COMPILER == COMPILER_MICROSOFT
+
+#define I64FMT "%016I64X"
+#define I64FMTD "%I64u"
+#define SI64FMTD "%I64d"
+
+#else
+
+#define I64FMT "%016llX"
+#define I64FMTD "%llu"
+#define SI64FMTD "%lld"
+
+#endif
 
 
 /////////////////////////////////////////////////////////////
@@ -79,7 +98,6 @@ namespace LightInk
 {
 	const int32 maxInt = 0x7FFF;
 	const uint32 maxUint32 = (uint32)-1;
-
 }
 
 

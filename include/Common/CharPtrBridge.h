@@ -21,25 +21,25 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
+#ifndef LIGHTINK_COMMON_CHARPTRBRIDGE_H_
+#define LIGHTINK_COMMON_CHARPTRBRIDGE_H_
 
-#include "Log/Log.h"
+#include "Common/Type.h"
+#include <string.h>
 
-
-void test_pack_class();
-void test_pack_type();
-void test_compress_encrypt();
-
-int main(int argc, char ** argv)
+namespace LightInk
 {
-	LogTrace("int main(int argc, char ** argv)");
-	
-	test_pack_class();
+	struct LIGHTINK_DECL CharPtrBridge
+	{
+		CharPtrBridge() : m_charPtr(NULL), m_len(0) { ; }
+		CharPtrBridge(const char * charPtr) : m_charPtr(charPtr), m_len(0) { if (charPtr) { m_len = strlen(charPtr); } }
+		CharPtrBridge(const char * charPtr, size_t len) : m_charPtr(charPtr), m_len(len) { ; }
+		virtual ~CharPtrBridge() { ; }
 
-	test_pack_type();
-
-	test_compress_encrypt();
-
-	getchar();
-
-	LogTraceReturn(0);
+		const char * m_charPtr;
+		size_t m_len;
+	};
 }
+
+
+#endif

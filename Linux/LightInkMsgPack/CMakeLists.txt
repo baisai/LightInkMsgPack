@@ -19,9 +19,10 @@ endforeach(k)
 
 set( middlePath Msgpack )
 set( sourceFile 
-	CapCompresser.cpp
 	DataBuffer.cpp
-	XxteaEncrypter.cpp
+	encrypter/CapCompresser.cpp
+	encrypter/XxteaEncrypter.cpp
+	encrypter/Crc32Encrypter.cpp
 )
 foreach(k ${sourceFile} )
   set( fullSourcePath ${fullSourcePath} ${sourceRootPath}/${middlePath}/${k} )

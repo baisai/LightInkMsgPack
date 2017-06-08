@@ -47,6 +47,22 @@
 //#define LightInkNoScriptError
 
 
+#define LIGHTINK_SHOWVERSION
+
+
+#ifdef _MSC_VER
+#pragma warning(disable:4251)
+#endif
+
+
+#if defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64) || defined(__aarch64__) || defined(__ppc64__)
+#define LIGHTINK_X64
+#endif
+
+//#ifndef LIGHTINK_LUAJIT
+//#define LIGHTINK_LUAJIT
+//#endif
+
 
 /////////////////////////////////////////////////////////
 //导出,导入变量
@@ -57,7 +73,7 @@
 
 #ifdef WIN32
 #define LIGHTINK_DECL __declspec(dllexport)
-#define LIGHTINK_TEMPLATE_DECL __declspec(dllexport)
+#define LIGHTINK_TEMPLATE_DECL //__declspec(dllexport)
 #elif defined __GNUC__ && __GNUC__ >= 4
 #define LIGHTINK_DECL __attribute__((visibility ("default")))
 #define LIGHTINK_TEMPLATE_DECL
@@ -69,7 +85,7 @@
 #else
 #ifdef WIN32
 #define LIGHTINK_DECL __declspec(dllimport)
-#define LIGHTINK_TEMPLATE_DECL __declspec(dllexport)
+#define LIGHTINK_TEMPLATE_DECL //__declspec(dllexport)
 #else
 #define LIGHTINK_DECL
 #define LIGHTINK_TEMPLATE_DECL

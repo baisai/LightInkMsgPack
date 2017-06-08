@@ -26,6 +26,8 @@
 #define LIGHTINK_COMMON_WINSNPRINTF_H_
 
 #include <stddef.h>
+#include <stdio.h>
+#include <stdarg.h>
 #include "Common/Config.h"
 
 #if defined(_MSC_VER) && _MSC_VER < 1900
@@ -42,6 +44,19 @@
 
 	#ifndef snprintf
 	#define snprintf WinSnpirintf
+	#endif
+
+#endif
+
+#ifndef WIN32
+	#ifdef __cplusplus
+	extern "C" {
+	#endif
+
+		LIGHTINK_DECL int _vscprintf (const char * format, va_list pargs);
+
+	#ifdef __cplusplus
+	}
 	#endif
 
 #endif

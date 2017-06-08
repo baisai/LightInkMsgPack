@@ -757,7 +757,7 @@ namespace LightInk
 		else if(t == _msgpack_head_false)
 		{
 			d = false;
-			RE_Success;
+			LogTraceReturn(RE_Success);
 		}
 		clear_pack_type(buffer, t);
 		LogTraceReturn(RE_Msgpack_TypeError);
@@ -923,7 +923,7 @@ namespace LightInk
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, std::string & s)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, std::string & s)");
+		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, string & s)");
 		uint32 len = 0;
 		unpack_str(buffer, len);
 		LogTraceReturn(buffer.read(s, len));

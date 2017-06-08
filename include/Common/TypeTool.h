@@ -21,8 +21,8 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-#ifndef LIGHTINK_COMMON_ISPOINTER_H_
-#define LIGHTINK_COMMON_ISPOINTER_H_
+#ifndef LIGHTINK_COMMON_TYPETOOL_H_
+#define LIGHTINK_COMMON_TYPETOOL_H_
 
 namespace LightInk
 {
@@ -39,6 +39,7 @@ namespace LightInk
 	struct IsPointer
 	{
 		enum { Result = false };
+		typedef T type;
 		static inline T & get_ref(T & data) {return data; };
 		static inline const T & get_ref(const T & data) {return data; };
 	};
@@ -47,8 +48,28 @@ namespace LightInk
 	struct IsPointer <T *>
 	{
 		enum { Result = true };
+		typedef T type;
 		static inline T & get_ref(T * data) {return *data; };
 		static inline const T & get_ref(const T * data) {return *data; };
+	};
+
+
+	template <typename T>
+	struct GetType
+	{
+		typedef T type;
+	};
+
+	template <typename T>
+	struct GetType<T *>
+	{
+		typedef T type;
+	};
+
+	template <typename T>
+	struct GetType<T &>
+	{
+		typedef T type;
 	};
 
 	template <int v>

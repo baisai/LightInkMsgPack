@@ -176,9 +176,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\Common\CharPtrBridge.h" />
     <ClInclude Include="..\..\include\Common\Config.h" />
     <ClInclude Include="..\..\include\Common\LightInkVersion.h" />
-    <ClInclude Include="..\..\include\Common\Log.h" />
     <ClInclude Include="..\..\include\Common\RuntimeError.h" />
     <ClInclude Include="..\..\include\Common\stdint_msvc2008.h" />
     <ClInclude Include="..\..\include\Common\Type.h" />
@@ -187,16 +187,18 @@
     <ClInclude Include="..\..\include\Common\TypeTool.h" />
     <ClInclude Include="..\..\include\Common\UserMemory.h" />
     <ClInclude Include="..\..\include\Common\WinSnprintf.h" />
-    <ClInclude Include="..\..\include\Msgpack\CapCompresser.h" />
+    <ClInclude Include="..\..\include\Log\Log.h" />
     <ClInclude Include="..\..\include\Msgpack\DataBuffer.h" />
     <ClInclude Include="..\..\include\Msgpack\DataFixBuffer.h" />
+    <ClInclude Include="..\..\include\Msgpack\encrypter\CapCompresser.h" />
+    <ClInclude Include="..\..\include\Msgpack\encrypter\Crc32Encrypter.h" />
+    <ClInclude Include="..\..\include\Msgpack\encrypter\XxteaEncrypter.h" />
     <ClInclude Include="..\..\include\Msgpack\PackBuffer.h" />
     <ClInclude Include="..\..\include\Msgpack\PackDefine.h" />
     <ClInclude Include="..\..\include\Msgpack\Packer.h" />
     <ClInclude Include="..\..\include\Msgpack\PackTuple.h" />
     <ClInclude Include="..\..\include\Msgpack\Sysdep.h" />
     <ClInclude Include="..\..\include\Msgpack\Unpacker.h" />
-    <ClInclude Include="..\..\include\Msgpack\XxteaEncrypter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\include\Msgpack\DataFixBuffer.cpp" />
@@ -208,9 +210,10 @@
     <ClCompile Include="..\..\src\Common\LightInkVersion.cpp" />
     <ClCompile Include="..\..\src\Common\RuntimeError.cpp" />
     <ClCompile Include="..\..\src\Common\WinSnprintf.c" />
-    <ClCompile Include="..\..\src\Msgpack\CapCompresser.cpp" />
     <ClCompile Include="..\..\src\Msgpack\DataBuffer.cpp" />
-    <ClCompile Include="..\..\src\Msgpack\XxteaEncrypter.cpp" />
+    <ClCompile Include="..\..\src\Msgpack\encrypter\CapCompresser.cpp" />
+    <ClCompile Include="..\..\src\Msgpack\encrypter\Crc32Encrypter.cpp" />
+    <ClCompile Include="..\..\src\Msgpack\encrypter\XxteaEncrypter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

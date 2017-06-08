@@ -129,6 +129,13 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
+	inline uint32 PackBuffer<DBuffer>::free_size() const
+	{
+		LogTrace("uint32 PackBuffer<DBuffer>::free_size() const");
+		LogTraceReturn(m_buffer.buffer_size() - m_buffer.write_pos());
+	}
+
+	template <typename DBuffer>
 	inline void PackBuffer<DBuffer>::write_pos(uint32 pos)
 	{
 		LogTrace("void PackBuffer<DBuffer>::write_pos(uint32 pos)");
@@ -196,7 +203,7 @@ namespace LightInk
 	template <typename DBuffer>
 	inline RuntimeError PackBuffer<DBuffer>::write(const std::string & data)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const std::string & data)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const string & data)");
 		LogTraceReturn(m_buffer.write(data));
 	}
 
@@ -257,7 +264,7 @@ namespace LightInk
 	template <typename DBuffer>
 	inline RuntimeError PackBuffer<DBuffer>::read(std::string & data, uint32 size)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::read(std::string & data, uint32 size)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::read(string & data, uint32 size)");
 		RuntimeError e = m_buffer.read(data, size, m_readPos);
 		if (e != RE_Success)
 		{

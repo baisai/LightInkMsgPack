@@ -135,7 +135,7 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_fix_uint8(TBuffer & buffer, uint8 d)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_fix_uint8(TBuffer & buffer, uint8 d)");
-		char buf[2] = {static_cast<char>(_msgpack_head_uint8), take8_8(d)};
+		uint8 buf[2] = {static_cast<uint8>(_msgpack_head_uint8), take8_8(d)};
 		LogTraceReturn(buffer.write(buf, 2));
 	}
 
@@ -143,8 +143,8 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_fix_uint16(TBuffer & buffer, uint16 d)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_fix_uint16(TBuffer & buffer, uint16 d)");
-		char buf[3];
-		buf[0] = static_cast<char>(_msgpack_head_uint16); _msgpack_store16(&buf[1], d);
+		uint8 buf[3];
+		buf[0] = static_cast<uint8>(_msgpack_head_uint16); _msgpack_store16(&buf[1], d);
 		LogTraceReturn(buffer.write(buf, 3));
 	}
 
@@ -152,8 +152,8 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_fix_uint32(TBuffer & buffer, uint32 d)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_fix_uint32(TBuffer & buffer, uint32 d)");
-		char buf[5];
-		buf[0] = static_cast<char>(_msgpack_head_uint32); _msgpack_store32(&buf[1], d);
+		uint8 buf[5];
+		buf[0] = static_cast<uint8>(_msgpack_head_uint32); _msgpack_store32(&buf[1], d);
 		LogTraceReturn(buffer.write(buf, 5));
 	}
 
@@ -161,8 +161,8 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_fix_uint64(TBuffer & buffer, uint64 d)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_fix_uint64(TBuffer & buffer, uint64 d)");
-		char buf[9];
-		buf[0] = static_cast<char>(_msgpack_head_uint64); _msgpack_store64(&buf[1], d);
+		uint8 buf[9];
+		buf[0] = static_cast<uint8>(_msgpack_head_uint64); _msgpack_store64(&buf[1], d);
 		LogTraceReturn(buffer.write(buf, 9));
 	}
 
@@ -170,7 +170,7 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_fix_int8(TBuffer & buffer, int8 d)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_fix_int8(TBuffer & buffer, int8 d)");
-		char buf[2] = {static_cast<char>(_msgpack_head_int8), take8_8(d)};
+		uint8 buf[2] = {static_cast<uint8>(_msgpack_head_int8), take8_8(d)};
 		LogTraceReturn(buffer.write(buf, 2));
 	}
 
@@ -178,8 +178,8 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_fix_int16(TBuffer & buffer, int16 d)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_fix_int16(TBuffer & buffer, int16 d)");
-		char buf[3];
-		buf[0] = static_cast<char>(_msgpack_head_int16); _msgpack_store16(&buf[1], d);
+		uint8 buf[3];
+		buf[0] = static_cast<uint8>(_msgpack_head_int16); _msgpack_store16(&buf[1], d);
 		LogTraceReturn(buffer.write(buf, 3));
 	}
 
@@ -187,8 +187,8 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_fix_int32(TBuffer & buffer, int32 d)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_fix_int32(TBuffer & buffer, int32 d)");
-		char buf[5];
-		buf[0] = static_cast<char>(_msgpack_head_int32); _msgpack_store32(&buf[1], d);
+		uint8 buf[5];
+		buf[0] = static_cast<uint8>(_msgpack_head_int32); _msgpack_store32(&buf[1], d);
 		LogTraceReturn(buffer.write(buf, 5));
 	}
 
@@ -196,8 +196,8 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_fix_int64(TBuffer & buffer, int64 d)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_fix_int64(TBuffer & buffer, int64 d)");
-		char buf[9];
-		buf[0] = static_cast<char>(_msgpack_head_int64); _msgpack_store64(&buf[1], d);
+		uint8 buf[9];
+		buf[0] = static_cast<uint8>(_msgpack_head_int64); _msgpack_store64(&buf[1], d);
 		LogTraceReturn(buffer.write(buf, 9));
 	}
 
@@ -503,8 +503,8 @@ namespace LightInk
 		LogTrace("RuntimeError Packer<TBuffer>::pack_float(TBuffer & buffer, float d)");
 		union { float f; uint32 i; } mem;
 		mem.f = d;
-		char buf[5];
-		buf[0] = static_cast<char>(_msgpack_head_float32); _msgpack_store32(&buf[1], mem.i);
+		uint8 buf[5];
+		buf[0] = static_cast<uint8>(_msgpack_head_float32); _msgpack_store32(&buf[1], mem.i);
 		LogTraceReturn(buffer.write(buf, 5));
 	}
 
@@ -514,8 +514,8 @@ namespace LightInk
 		LogTrace("RuntimeError Packer<TBuffer>::pack_double(TBuffer & buffer, double d)");
 		union { double f; uint64 i; } mem;
 		mem.f = d;
-		char buf[9];
-		buf[0] = static_cast<char>(_msgpack_head_float64);
+		uint8 buf[9];
+		buf[0] = static_cast<uint8>(_msgpack_head_float64);
 #if defined(__arm__) && !(__ARM_EABI__) // arm-oabi
 		// https://github.com/msgpack/msgpack-perl/pull/1
 		mem.i = (mem.i & 0xFFFFFFFFUL) << 32UL | (mem.i >> 32UL);
@@ -529,7 +529,7 @@ namespace LightInk
 	inline RuntimeError Packer<TBuffer>::pack_nil(TBuffer & buffer)
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_nil(TBuffer & buffer)");
-		const char d = static_cast<char>(_msgpack_head_nil);
+		const uint8 d = static_cast<uint8>(_msgpack_head_nil);
 		LogTraceReturn(buffer.write(&d, 1));
 	}
 
@@ -539,12 +539,12 @@ namespace LightInk
 		LogTrace("RuntimeError Packer<TBuffer>::pack_bool(TBuffer & buffer, bool d)");
 		if (d)
 		{
-			const char t = static_cast<char>(_msgpack_head_true);
+			const uint8 t = static_cast<uint8>(_msgpack_head_true);
 			LogTraceReturn(buffer.write(&t, 1));
 		}
 		else
 		{
-			const char t = static_cast<char>(_msgpack_head_false);
+			const uint8 t = static_cast<uint8>(_msgpack_head_false);
 			LogTraceReturn(buffer.write(&t, 1));
 		}
 	}
@@ -555,15 +555,15 @@ namespace LightInk
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_array(TBuffer & buffer, uint32 n)");
 		if(n < 16) {
-			char d = static_cast<char>(_msgpack_head_fixarray_from | n);
+			uint8 d = static_cast<uint8>(_msgpack_head_fixarray_from | n);
 			LogTraceReturn(buffer.write(&d, 1));
 		} else if(n < 65536) {
-			char buf[3];
-			buf[0] = static_cast<char>(_msgpack_head_array16); _msgpack_store16(&buf[1], static_cast<uint16>(n));
+			uint8 buf[3];
+			buf[0] = static_cast<uint8>(_msgpack_head_array16); _msgpack_store16(&buf[1], static_cast<uint16>(n));
 			LogTraceReturn(buffer.write(buf, 3));
 		} else {
-			char buf[5];
-			buf[0] = static_cast<char>(_msgpack_head_array32); _msgpack_store32(&buf[1], static_cast<uint32>(n));
+			uint8 buf[5];
+			buf[0] = static_cast<uint8>(_msgpack_head_array32); _msgpack_store32(&buf[1], static_cast<uint32>(n));
 			LogTraceReturn(buffer.write(buf, 5));
 		}
 	}
@@ -573,16 +573,16 @@ namespace LightInk
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_map(TBuffer & buffer, uint32 n)");
 		if(n < 16) {
-			unsigned char d = static_cast<unsigned char>(_msgpack_head_fixmap_from | n);
-			char buf = take8_8(d);
+			uint8 d = static_cast<uint8>(_msgpack_head_fixmap_from | n);
+			uint8 buf = take8_8(d);
 			LogTraceReturn(buffer.write(&buf, 1));
 		} else if(n < 65536) {
-			char buf[3];
-			buf[0] = static_cast<char>(_msgpack_head_map16); _msgpack_store16(&buf[1], static_cast<uint16>(n));
+			uint8 buf[3];
+			buf[0] = static_cast<uint8>(_msgpack_head_map16); _msgpack_store16(&buf[1], static_cast<uint16>(n));
 			LogTraceReturn(buffer.write(buf, 3));
 		} else {
-			char buf[5];
-			buf[0] = static_cast<char>(_msgpack_head_map32); _msgpack_store32(&buf[1], static_cast<uint32>(n));
+			uint8 buf[5];
+			buf[0] = static_cast<uint8>(_msgpack_head_map32); _msgpack_store32(&buf[1], static_cast<uint32>(n));
 			LogTraceReturn(buffer.write(buf, 5));
 		}
 	}
@@ -592,20 +592,20 @@ namespace LightInk
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_str(TBuffer & buffer, uint32 l)");
 		if(l < 32) {
-			unsigned char d = _msgpack_head_fixstr_from | static_cast<uint8>(l);
-			char buf = take8_8(d);
+			uint8 d = _msgpack_head_fixstr_from | static_cast<uint8>(l);
+			uint8 buf = take8_8(d);
 			LogTraceReturn(buffer.write(&buf, 1));
 		} else if(l < 256) {
-			char buf[2];
-			buf[0] = static_cast<char>(_msgpack_head_str8); buf[1] = static_cast<uint8>(l);
+			uint8 buf[2];
+			buf[0] = static_cast<uint8>(_msgpack_head_str8); buf[1] = static_cast<uint8>(l);
 			LogTraceReturn(buffer.write(buf, 2));
 		} else if(l < 65536) {
-			char buf[3];
-			buf[0] = static_cast<char>(_msgpack_head_str16); _msgpack_store16(&buf[1], static_cast<uint16>(l));
+			uint8 buf[3];
+			buf[0] = static_cast<uint8>(_msgpack_head_str16); _msgpack_store16(&buf[1], static_cast<uint16>(l));
 			LogTraceReturn(buffer.write(buf, 3));
 		} else {
-			char buf[5];
-			buf[0] = static_cast<char>(_msgpack_head_str32); _msgpack_store32(&buf[1], static_cast<uint32>(l));
+			uint8 buf[5];
+			buf[0] = static_cast<uint8>(_msgpack_head_str32); _msgpack_store32(&buf[1], static_cast<uint32>(l));
 			LogTraceReturn(buffer.write(buf, 5));
 		}
 	}
@@ -620,7 +620,7 @@ namespace LightInk
 	template <typename TBuffer>
 	inline RuntimeError Packer<TBuffer>::pack_str_string(TBuffer & buffer, const std::string & s)
 	{
-		LogTrace("RuntimeError Packer<TBuffer>::pack_str_string(TBuffer & buffer, const std::string & s)");
+		LogTrace("RuntimeError Packer<TBuffer>::pack_str_string(TBuffer & buffer, const string & s)");
 		RuntimeError err = pack_str(buffer, s.size());
 		if (err != RE_Success)
 		{
@@ -634,16 +634,16 @@ namespace LightInk
 	{
 		LogTrace("RuntimeError Packer<TBuffer>::pack_bin(TBuffer & buffer, uint32 l)");
 		if(l < 256) {
-			char buf[2];
-			buf[0] = static_cast<char>(_msgpack_head_bin8); buf[1] = static_cast<uint8>(l);
+			uint8 buf[2];
+			buf[0] = static_cast<uint8>(_msgpack_head_bin8); buf[1] = static_cast<uint8>(l);
 			LogTraceReturn(buffer.write(buf, 2));
 		} else if(l < 65536) {
-			char buf[3];
-			buf[0] = static_cast<char>(_msgpack_head_bin16); _msgpack_store16(&buf[1], static_cast<uint16>(l));
+			uint8 buf[3];
+			buf[0] = static_cast<uint8>(_msgpack_head_bin16); _msgpack_store16(&buf[1], static_cast<uint16>(l));
 			LogTraceReturn(buffer.write(buf, 3));
 		} else {
-			char buf[5];
-			buf[0] = static_cast<char>(_msgpack_head_bin32); _msgpack_store32(&buf[1], static_cast<uint32>(l));
+			uint8 buf[5];
+			buf[0] = static_cast<uint8>(_msgpack_head_bin32); _msgpack_store32(&buf[1], static_cast<uint32>(l));
 			LogTraceReturn(buffer.write(buf, 5));
 		}
 	}
@@ -661,53 +661,53 @@ namespace LightInk
 		LogTrace("RuntimeError Packer<TBuffer>::pack_ext(TBuffer & buffer, uint32 l, int8 type)");
 		switch(l) {
 		case 1: {
-			char buf[2];
-			buf[0] = static_cast<char>(_msgpack_head_fixext1);
-			buf[1] = static_cast<char>(type);
+			uint8 buf[2];
+			buf[0] = static_cast<uint8>(_msgpack_head_fixext1);
+			buf[1] = static_cast<uint8>(type);
 			LogTraceReturn(buffer.write(buf, 2));
 				} break;
 		case 2: {
-			char buf[2];
-			buf[0] = static_cast<char>(_msgpack_head_fixext2);
-			buf[1] = static_cast<char>(type);
+			uint8 buf[2];
+			buf[0] = static_cast<uint8>(_msgpack_head_fixext2);
+			buf[1] = static_cast<uint8>(type);
 			LogTraceReturn(buffer.write(buf, 2));
 				} break;
 		case 4: {
-			char buf[2];
-			buf[0] = static_cast<char>(_msgpack_head_fixext4);
-			buf[1] = static_cast<char>(type);
+			uint8 buf[2];
+			buf[0] = static_cast<uint8>(_msgpack_head_fixext4);
+			buf[1] = static_cast<uint8>(type);
 			LogTraceReturn(buffer.write(buf, 2));
 				} break;
 		case 8: {
-			char buf[2];
-			buf[0] = static_cast<char>(_msgpack_head_fixext8);
-			buf[1] = static_cast<char>(type);
+			uint8 buf[2];
+			buf[0] = static_cast<uint8>(_msgpack_head_fixext8);
+			buf[1] = static_cast<uint8>(type);
 			LogTraceReturn(buffer.write(buf, 2));
 				} break;
 		case 16: {
-			char buf[2];
-			buf[0] = static_cast<char>(_msgpack_head_fixext16);
-			buf[1] = static_cast<char>(type);
+			uint8 buf[2];
+			buf[0] = static_cast<uint8>(_msgpack_head_fixext16);
+			buf[1] = static_cast<uint8>(type);
 			LogTraceReturn(buffer.write(buf, 2));
 				 } break;
 		default:
 			if(l < 256) {
-				char buf[3];
-				buf[0] = static_cast<char>(_msgpack_head_ext8);
-				buf[1] = static_cast<char>(l);
-				buf[2] = static_cast<char>(type);
+				uint8 buf[3];
+				buf[0] = static_cast<uint8>(_msgpack_head_ext8);
+				buf[1] = static_cast<uint8>(l);
+				buf[2] = static_cast<uint8>(type);
 				LogTraceReturn(buffer.write(buf, 3));
 			} else if(l < 65536) {
-				char buf[4];
-				buf[0] = static_cast<char>(_msgpack_head_ext16);
+				uint8 buf[4];
+				buf[0] = static_cast<uint8>(_msgpack_head_ext16);
 				_msgpack_store16(&buf[1], static_cast<uint16>(l));
-				buf[3] = static_cast<char>(type);
+				buf[3] = static_cast<uint8>(type);
 				LogTraceReturn(buffer.write(buf, 4));
 			} else {
-				char buf[6];
-				buf[0] = static_cast<char>(_msgpack_head_ext32);
+				uint8 buf[6];
+				buf[0] = static_cast<uint8>(_msgpack_head_ext32);
 				_msgpack_store32(&buf[1], static_cast<uint32>(l));
-				buf[5] = static_cast<char>(type);
+				buf[5] = static_cast<uint8>(type);
 				LogTraceReturn(buffer.write(buf, 6));
 			}
 			break;
@@ -729,11 +729,11 @@ namespace LightInk
 		LogTrace("RuntimeError Packer<TBuffer>::pack_imp_uint8(TBuffer & buffer, T d)");
 		if(d < (1<<7)) {
 			/* fixnum */
-			char buf = take8_8(d);
+			uint8 buf = take8_8(d);
 			LogTraceReturn(buffer.write(&buf, 1));
 		} else {
 			/* unsigned 8 */
-			char buf[2] = {static_cast<char>(_msgpack_head_uint8), take8_8(d)};
+			uint8 buf[2] = {static_cast<uint8>(_msgpack_head_uint8), take8_8(d)};
 			LogTraceReturn(buffer.write(buf, 2));
 		}
 	}
@@ -745,16 +745,16 @@ namespace LightInk
 		LogTrace("RuntimeError Packer<TBuffer>::pack_imp_uint16(TBuffer & buffer, T d)");
 		if(d < (1<<7)) {
 			/* fixnum */
-			char buf = take8_16(d);
+			uint8 buf = take8_16(d);
 			LogTraceReturn(buffer.write(&buf, 1));
 		} else if(d < (1<<8)) {
 			/* unsigned 8 */
-			char buf[2] = {static_cast<char>(_msgpack_head_uint8), take8_16(d)};
+			uint8 buf[2] = {static_cast<uint8>(_msgpack_head_uint8), take8_16(d)};
 			LogTraceReturn(buffer.write(buf, 2));
 		} else {
 			/* unsigned 16 */
-			char buf[3];
-			buf[0] = static_cast<char>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
+			uint8 buf[3];
+			buf[0] = static_cast<uint8>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
 			LogTraceReturn(buffer.write(buf, 3));
 		}
 	}
@@ -767,23 +767,23 @@ namespace LightInk
 		if(d < (1<<8)) {
 			if(d < (1<<7)) {
 				/* fixnum */
-				char buf = take8_32(d);
+				uint8 buf = take8_32(d);
 				LogTraceReturn(buffer.write(&buf, 1));
 			} else {
 				/* unsigned 8 */
-				char buf[2] = {static_cast<char>(_msgpack_head_uint8), take8_32(d)};
+				uint8 buf[2] = {static_cast<uint8>(_msgpack_head_uint8), take8_32(d)};
 				LogTraceReturn(buffer.write(buf, 2));
 			}
 		} else {
 			if(d < (1<<16)) {
 				/* unsigned 16 */
-				char buf[3];
-				buf[0] = static_cast<char>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
+				uint8 buf[3];
+				buf[0] = static_cast<uint8>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
 				LogTraceReturn(buffer.write(buf, 3));
 			} else {
 				/* unsigned 32 */
-				char buf[5];
-				buf[0] = static_cast<char>(_msgpack_head_uint32); _msgpack_store32(&buf[1], static_cast<uint32>(d));
+				uint8 buf[5];
+				buf[0] = static_cast<uint8>(_msgpack_head_uint32); _msgpack_store32(&buf[1], static_cast<uint32>(d));
 				LogTraceReturn(buffer.write(buf, 5));
 			}
 		}
@@ -797,28 +797,28 @@ namespace LightInk
 		if(d < (1ULL<<8)) {
 			if(d < (1ULL<<7)) {
 				/* fixnum */
-				char buf = take8_64(d);
+				uint8 buf = take8_64(d);
 				LogTraceReturn(buffer.write(&buf, 1));
 			} else {
 				/* unsigned 8 */
-				char buf[2] = {static_cast<char>(_msgpack_head_uint8), take8_64(d)};
+				uint8 buf[2] = {static_cast<uint8>(_msgpack_head_uint8), take8_64(d)};
 				LogTraceReturn(buffer.write(buf, 2));
 			}
 		} else {
 			if(d < (1ULL<<16)) {
 				/* unsigned 16 */
-				char buf[3];
-				buf[0] = static_cast<char>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
+				uint8 buf[3];
+				buf[0] = static_cast<uint8>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
 				LogTraceReturn(buffer.write(buf, 3));
 			} else if(d < (1ULL<<32)) {
 				/* unsigned 32 */
-				char buf[5];
-				buf[0] = static_cast<char>(_msgpack_head_uint32); _msgpack_store32(&buf[1], static_cast<uint32>(d));
+				uint8 buf[5];
+				buf[0] = static_cast<uint8>(_msgpack_head_uint32); _msgpack_store32(&buf[1], static_cast<uint32>(d));
 				LogTraceReturn(buffer.write(buf, 5));
 			} else {
 				/* unsigned 64 */
-				char buf[9];
-				buf[0] = static_cast<char>(_msgpack_head_uint64); _msgpack_store64(&buf[1], d);
+				uint8 buf[9];
+				buf[0] = static_cast<uint8>(_msgpack_head_uint64); _msgpack_store64(&buf[1], d);
 				LogTraceReturn(buffer.write(buf, 9));
 			}
 		}
@@ -831,11 +831,11 @@ namespace LightInk
 		LogTrace("RuntimeError Packer<TBuffer>::pack_imp_int8(TBuffer & buffer, T d)");
 		if(d < -(1<<5)) {
 			/* signed 8 */
-			char buf[2] = {static_cast<char>(_msgpack_head_int8), take8_8(d)};
+			uint8 buf[2] = {static_cast<uint8>(_msgpack_head_int8), take8_8(d)};
 			LogTraceReturn(buffer.write(buf, 2));
 		} else {
 			/* fixnum */
-			char buf = take8_8(d);
+			uint8 buf = take8_8(d);
 			LogTraceReturn(buffer.write(&buf, 1));
 		}
 	}
@@ -848,27 +848,27 @@ namespace LightInk
 		if(d < -(1<<5)) {
 			if(d < -(1<<7)) {
 				/* signed 16 */
-				char buf[3];
-				buf[0] = static_cast<char>(_msgpack_head_int16); _msgpack_store16(&buf[1], static_cast<int16>(d));
+				uint8 buf[3];
+				buf[0] = static_cast<uint8>(_msgpack_head_int16); _msgpack_store16(&buf[1], static_cast<int16>(d));
 				LogTraceReturn(buffer.write(buf, 3));
 			} else {
 				/* signed 8 */
-				char buf[2] = {static_cast<char>(_msgpack_head_int8), take8_16(d)};
+				uint8 buf[2] = {static_cast<uint8>(_msgpack_head_int8), take8_16(d)};
 				LogTraceReturn(buffer.write(buf, 2));
 			}
 		} else if(d < (1<<7)) {
 			/* fixnum */
-			char buf = take8_16(d);
+			uint8 buf = take8_16(d);
 			LogTraceReturn(buffer.write(&buf, 1));
 		} else {
 			if(d < (1<<8)) {
 				/* unsigned 8 */
-				char buf[2] = {static_cast<char>(_msgpack_head_uint8), take8_16(d)};
+				uint8 buf[2] = {static_cast<uint8>(_msgpack_head_uint8), take8_16(d)};
 				LogTraceReturn(buffer.write(buf, 2));
 			} else {
 				/* unsigned 16 */
-				char buf[3];
-				buf[0] = static_cast<char>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
+				uint8 buf[3];
+				buf[0] = static_cast<uint8>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
 				LogTraceReturn(buffer.write(buf, 3));
 			}
 		}
@@ -882,37 +882,37 @@ namespace LightInk
 		if(d < -(1<<5)) {
 			if(d < -(1<<15)) {
 				/* signed 32 */
-				char buf[5];
-				buf[0] = static_cast<char>(_msgpack_head_int32); _msgpack_store32(&buf[1], static_cast<int32>(d));
+				uint8 buf[5];
+				buf[0] = static_cast<uint8>(_msgpack_head_int32); _msgpack_store32(&buf[1], static_cast<int32>(d));
 				LogTraceReturn(buffer.write(buf, 5));
 			} else if(d < -(1<<7)) {
 				/* signed 16 */
-				char buf[3];
-				buf[0] = static_cast<char>(_msgpack_head_int16); _msgpack_store16(&buf[1], static_cast<int16>(d));
+				uint8 buf[3];
+				buf[0] = static_cast<uint8>(_msgpack_head_int16); _msgpack_store16(&buf[1], static_cast<int16>(d));
 				LogTraceReturn(buffer.write(buf, 3));
 			} else {
 				/* signed 8 */
-				char buf[2] = { static_cast<char>(_msgpack_head_int8), take8_32(d)};
+				uint8 buf[2] = { static_cast<uint8>(_msgpack_head_int8), take8_32(d)};
 				LogTraceReturn(buffer.write(buf, 2));
 			}
 		} else if(d < (1<<7)) {
 			/* fixnum */
-			char buf = take8_32(d);
+			uint8 buf = take8_32(d);
 			LogTraceReturn(buffer.write(&buf, 1));
 		} else {
 			if(d < (1<<8)) {
 				/* unsigned 8 */
-				char buf[2] = { static_cast<char>(_msgpack_head_uint8), take8_32(d)};
+				uint8 buf[2] = { static_cast<uint8>(_msgpack_head_uint8), take8_32(d)};
 				LogTraceReturn(buffer.write(buf, 2));
 			} else if(d < (1<<16)) {
 				/* unsigned 16 */
-				char buf[3];
-				buf[0] = static_cast<char>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
+				uint8 buf[3];
+				buf[0] = static_cast<uint8>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
 				LogTraceReturn(buffer.write(buf, 3));
 			} else {
 				/* unsigned 32 */
-				char buf[5];
-				buf[0] = static_cast<char>(_msgpack_head_uint32); _msgpack_store32(&buf[1], static_cast<uint32>(d));
+				uint8 buf[5];
+				buf[0] = static_cast<uint8>(_msgpack_head_uint32); _msgpack_store32(&buf[1], static_cast<uint32>(d));
 				LogTraceReturn(buffer.write(buf, 5));
 			}
 		}
@@ -927,53 +927,53 @@ namespace LightInk
 			if(d < -(1LL<<15)) {
 				if(d < -(1LL<<31)) {
 					/* signed 64 */
-					char buf[9];
-					buf[0] = static_cast<char>(_msgpack_head_int64); _msgpack_store64(&buf[1], d);
+					uint8 buf[9];
+					buf[0] = static_cast<uint8>(_msgpack_head_int64); _msgpack_store64(&buf[1], d);
 					LogTraceReturn(buffer.write(buf, 9));
 				} else {
 					/* signed 32 */
-					char buf[5];
-					buf[0] = static_cast<char>(_msgpack_head_int32); _msgpack_store32(&buf[1], static_cast<int32>(d));
+					uint8 buf[5];
+					buf[0] = static_cast<uint8>(_msgpack_head_int32); _msgpack_store32(&buf[1], static_cast<int32>(d));
 					LogTraceReturn(buffer.write(buf, 5));
 				}
 			} else {
 				if(d < -(1<<7)) {
 					/* signed 16 */
-					char buf[3];
-					buf[0] = static_cast<char>(_msgpack_head_int16); _msgpack_store16(&buf[1], static_cast<int16>(d));
+					uint8 buf[3];
+					buf[0] = static_cast<uint8>(_msgpack_head_int16); _msgpack_store16(&buf[1], static_cast<int16>(d));
 					LogTraceReturn(buffer.write(buf, 3));
 				} else {
 					/* signed 8 */
-					char buf[2] = {static_cast<char>(_msgpack_head_int8), take8_64(d)};
+					uint8 buf[2] = {static_cast<uint8>(_msgpack_head_int8), take8_64(d)};
 					LogTraceReturn(buffer.write(buf, 2));
 				}
 			}
 		} else if(d < (1<<7)) {
 			/* fixnum */
-			char buf = take8_64(d);
+			uint8 buf = take8_64(d);
 			LogTraceReturn(buffer.write(&buf, 1));
 		} else {
 			if(d < (1LL<<16)) {
 				if(d < (1<<8)) {
 					/* unsigned 8 */
-					char buf[2] = {static_cast<char>(_msgpack_head_uint8), take8_64(d)};
+					uint8 buf[2] = {static_cast<uint8>(_msgpack_head_uint8), take8_64(d)};
 					LogTraceReturn(buffer.write(buf, 2));
 				} else {
 					/* unsigned 16 */
-					char buf[3];
-					buf[0] = static_cast<char>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
+					uint8 buf[3];
+					buf[0] = static_cast<uint8>(_msgpack_head_uint16); _msgpack_store16(&buf[1], static_cast<uint16>(d));
 					LogTraceReturn(buffer.write(buf, 3));
 				}
 			} else {
 				if(d < (1LL<<32)) {
 					/* unsigned 32 */
-					char buf[5];
-					buf[0] = static_cast<char>(_msgpack_head_uint32); _msgpack_store32(&buf[1], static_cast<uint32>(d));
+					uint8 buf[5];
+					buf[0] = static_cast<uint8>(_msgpack_head_uint32); _msgpack_store32(&buf[1], static_cast<uint32>(d));
 					LogTraceReturn(buffer.write(buf, 5));
 				} else {
 					/* unsigned 64 */
-					char buf[9];
-					buf[0] = static_cast<char>(_msgpack_head_uint64); _msgpack_store64(&buf[1], d);
+					uint8 buf[9];
+					buf[0] = static_cast<uint8>(_msgpack_head_uint64); _msgpack_store64(&buf[1], d);
 					LogTraceReturn(buffer.write(buf, 9));
 				}
 			}

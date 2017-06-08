@@ -22,24 +22,36 @@
  * IN THE SOFTWARE.
  */
 
-#include "Log/Log.h"
+#ifndef LIGHTINK_MSGPACK_CRC32ENCRYPTER_H_
 
+#define LIGHTINK_MSGPACK_CRC32ENCRYPTER_H_
 
-void test_pack_class();
-void test_pack_type();
-void test_compress_encrypt();
+#include "Common/Type.h"
+#include "Common/RuntimeError.h"
+#include "Common/CharPtrBridge.h"
 
-int main(int argc, char ** argv)
+namespace LightInk
 {
-	LogTrace("int main(int argc, char ** argv)");
-	
-	test_pack_class();
+	class LIGHTINK_DECL Crc32Encrypter
+	{
+	public:
+		template<typename TBuffer>
+		inline static uint32 encrypt(TBuffer & src, uint32 key)
+		{
+			LogTrace("uint32 Crc32Encrypter::encrypt(TBuffer & src, uint32 key)");
+			src.read_pos(0);
+			LogTraceReturn(encrypt(src.data(), src.size(), key));
+		}
 
-	test_pack_type();
+		static uint32 encrypt(void * data, uint32 len, uint32 key);
 
-	test_compress_encrypt();
+		static uint32 encrypt(const CharPtrBridge * cpb, uint32 count, uint32 key);
 
-	getchar();
+	private:
+		static const uint32 s_crc32Table[256];
 
-	LogTraceReturn(0);
+	};
 }
+
+
+#endif

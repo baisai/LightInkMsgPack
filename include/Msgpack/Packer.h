@@ -87,7 +87,7 @@ namespace LightInk
 		RuntimeError pack_str(uint32 l) { LogTrace("RuntimeError pack_str(uint32 l)"); LogTraceReturn(pack_str(*m_buffer, l)); }
 		RuntimeError pack_str_body(const char* b, uint32 l) { LogTrace("RuntimeError pack_str_body(const char* b, uint32 l)"); LogTraceReturn(pack_str_body(*m_buffer, b, l)); }
 
-		RuntimeError pack_str_string(const std::string & s) { LogTrace("RuntimeError pack_str_string(const std::string & s)"); LogTraceReturn(pack_str_string(*m_buffer, s)); }
+		RuntimeError pack_str_string(const std::string & s) { LogTrace("RuntimeError pack_str_string(const string & s)"); LogTraceReturn(pack_str_string(*m_buffer, s)); }
 
 		RuntimeError pack_bin(uint32 l) { LogTrace("RuntimeError pack_bin(uint32 l)"); LogTraceReturn(pack_bin(*m_buffer, l)); }
 		RuntimeError pack_bin_body(const char* b, uint32 l) { LogTrace("RuntimeError pack_bin_body(const char* b, uint32 l)"); LogTraceReturn(pack_bin_body(*m_buffer, b, l)); }

@@ -64,7 +64,7 @@ namespace LightInk
 		LogTrace("DataFixBuffer<FixLen> & DataFixBuffer<FixLen>::operator = (const DataFixBuffer & right)");
 		m_writePos = right.m_writePos;
 		memcpy(m_buffer, right.m_buffer, m_writePos);
-		LogTraceReturnVoid;
+		LogTraceReturn(*this);
 	}
 
 
@@ -150,7 +150,7 @@ namespace LightInk
 	template <uint32 FixLen>
 	inline RuntimeError DataFixBuffer<FixLen>::write(const std::string & data)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const std::string & data)");
+		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const string & data)");
 		LogTraceReturn(write(data.c_str(), data.size()));
 	}
 
@@ -195,7 +195,7 @@ namespace LightInk
 	template <uint32 FixLen>
 	RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)");
+		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(string & data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);

@@ -1,7 +1,6 @@
 
 
 
-
 /* Copyright ChenDong(Wilbur), email <baisaichen@live.com>. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,15 +21,16 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
+
 #ifndef LIGHTINK_MSGPACK_PACKERADAPTOR_CPP_
 
 #define LIGHTINK_MSGPACK_PACKERADAPTOR_CPP_
 
 #include <string.h>
+#include <vector>
 #include "Packer.h"
 #include "Common/TypeTool.h"
 #include "Common/TypeListDefine.h"
-#include <vector>
 
 namespace LightInk
 {
@@ -181,7 +181,7 @@ namespace LightInk
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const std::string & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const std::string v)");
+		LogTrace("RuntimeError pack(TBuffer & buffer, const string v)");
 		LogTraceReturn(Packer<TBuffer>::pack_str_string(buffer, v));
 	}
 

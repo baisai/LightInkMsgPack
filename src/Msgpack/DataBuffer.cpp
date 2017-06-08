@@ -23,9 +23,9 @@
  */
 
 #include "Msgpack/DataBuffer.h"
+#include "Common/UserMemory.h"
 #include <stdlib.h>
 #include <memory.h>
-#include "Common/UserMemory.h"
 
 namespace LightInk
 {
@@ -130,7 +130,7 @@ namespace LightInk
 
 	RuntimeError DataBuffer::write(const std::string & data)
 	{
-		LogTrace("RuntimeError DataBuffer::write(const std::string & data)");
+		LogTrace("RuntimeError DataBuffer::write(const string & data)");
 		LogTraceReturn(write(data.c_str(), data.size()));
 	}
 
@@ -168,7 +168,7 @@ namespace LightInk
 	}
 	RuntimeError DataBuffer::read(std::string & data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataBuffer::read(std::string & data, uint32 size, uint32 offset)");
+		LogTrace("RuntimeError DataBuffer::read(string & data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);

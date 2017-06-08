@@ -31,7 +31,7 @@
 
 namespace LightInk
 {
-	class LIGHTINK_TEMPLATE_DECL CapCompresser
+	class LIGHTINK_DECL CapCompresser
 	{
 	public:
 		template <typename TBuffer>

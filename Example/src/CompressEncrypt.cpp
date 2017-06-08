@@ -22,8 +22,8 @@
  * IN THE SOFTWARE.
  */
 #include "Msgpack/PackBuffer.h"
-#include "Msgpack/CapCompresser.h"
-#include "Msgpack/XxteaEncrypter.h"
+#include "Msgpack/encrypter/CapCompresser.h"
+#include "Msgpack/encrypter/XxteaEncrypter.h"
 
 
 void test_compress_encrypt()

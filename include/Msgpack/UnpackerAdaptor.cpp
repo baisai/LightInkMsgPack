@@ -25,11 +25,10 @@
 #ifndef LIGHTINK_MSGPACK_UNPACKERADAPTOR_CPP_
 #define LIGHTINK_MSGPACK_UNPACKERADAPTOR_CPP_
 
+#include <vector>
 #include "Unpacker.h"
 #include "Common/TypeTool.h"
 #include "Common/TypeListDefine.h"
-#include <vector>
-
 namespace LightInk
 {
 	template <typename TBuffer, typename T>
@@ -182,7 +181,7 @@ namespace LightInk
 	template <typename TBuffer>
 	inline RuntimeError unpack(TBuffer & buffer, std::string & v)
 	{
-		LogTrace("RuntimeError unpack(TBuffer & buffer, std::string & v)");
+		LogTrace("RuntimeError unpack(TBuffer & buffer, string & v)");
 		LogTraceReturn(Unpacker<TBuffer>::unpack_str_string(buffer, v));
 	}
 

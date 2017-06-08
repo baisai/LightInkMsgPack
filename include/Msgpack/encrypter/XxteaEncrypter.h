@@ -1,7 +1,6 @@
 
 
 
-
 /* Copyright ChenDong(Wilbur), email <baisaichen@live.com>. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,6 +21,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
+
 #ifndef LIGHTINK_MSGPACK_XXTEAENCRYPTER_H_
 
 #define LIGHTINK_MSGPACK_XXTEAENCRYPTER_H_
@@ -31,7 +31,7 @@
 
 namespace LightInk
 {
-	class LIGHTINK_TEMPLATE_DECL XxteaEncrypter
+	class LIGHTINK_DECL XxteaEncrypter
 	{
 	public:
 		template<typename TBuffer>

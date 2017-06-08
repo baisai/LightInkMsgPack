@@ -26,9 +26,6 @@
 
 #if defined(_MSC_VER) && _MSC_VER < 1900
 
-#include <stdio.h>
-#include <stdarg.h>
-
 /* Emulate snprintf() on MSVC<2015, _snprintf() doesn't zero-terminate the buffer
  * on overflow...
  */
@@ -42,6 +39,20 @@ int WinSnpirintf(char* buf, size_t len, const char* fmt, ...) {
 
   va_end(ap);
   return n;
+}
+
+#endif
+
+#ifndef WIN32
+
+int _vscprintf (const char * format, va_list pargs)
+{
+	int retval = 0;
+	va_list argcopy;
+	va_copy(argcopy, pargs);
+	retval = vsnprintf(NULL, 0, format, argcopy);
+	va_end(argcopy);
+	return retval;
 }
 
 #endif

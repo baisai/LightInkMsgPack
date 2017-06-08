@@ -23,6 +23,7 @@
  */
 
 #include <string>
+#include <vector>
 #include "Msgpack/PackDefine.h"
 
 class PackClassBase
@@ -40,7 +41,7 @@ public:
 		return false;
 	}
 
-	LIGHTINK_MSGPACK_DEFINE(m_char, m_short, m_ushort, m_int, m_uint, m_long, m_ulong, m_longlong, m_ulonglong, m_string)
+	LIGHTINK_MSGPACK_DEFINE(m_char, m_short, m_ushort, m_int, m_uint, m_long, m_ulong, m_longlong, m_ulonglong, m_string, m_vec)
 
 public:
 	char m_char;
@@ -53,6 +54,7 @@ public:
 	long long m_longlong;
 	unsigned long long m_ulonglong;
 	std::string m_string;
+	std::vector<char> m_vec;
 };
 
 class PackClassDiv
@@ -72,6 +74,7 @@ public:
 	}
 
 	LIGHTINK_MSGPACK_DEFINE(m_char, m_short, m_ushort, m_int, m_uint, m_long, m_ulong, m_longlong, m_ulonglong, m_string, m_class)
+
 public:
 	char m_char;
 	short m_short;
