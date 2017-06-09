@@ -190,6 +190,7 @@
     <ClInclude Include="..\..\include\Log\Log.h" />
     <ClInclude Include="..\..\include\Msgpack\DataBuffer.h" />
     <ClInclude Include="..\..\include\Msgpack\DataFixBuffer.h" />
+    <ClInclude Include="..\..\include\Msgpack\DataRefBuffer.h" />
     <ClInclude Include="..\..\include\Msgpack\encrypter\CapCompresser.h" />
     <ClInclude Include="..\..\include\Msgpack\encrypter\Crc32Encrypter.h" />
     <ClInclude Include="..\..\include\Msgpack\encrypter\XxteaEncrypter.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="..\..\src\Common\RuntimeError.cpp" />
     <ClCompile Include="..\..\src\Common\WinSnprintf.c" />
     <ClCompile Include="..\..\src\Msgpack\DataBuffer.cpp" />
+    <ClCompile Include="..\..\src\Msgpack\DataRefBuffer.cpp" />
     <ClCompile Include="..\..\src\Msgpack\encrypter\CapCompresser.cpp" />
     <ClCompile Include="..\..\src\Msgpack\encrypter\Crc32Encrypter.cpp" />
     <ClCompile Include="..\..\src\Msgpack\encrypter\XxteaEncrypter.cpp" />

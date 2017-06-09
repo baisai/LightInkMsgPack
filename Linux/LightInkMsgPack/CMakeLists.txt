@@ -20,6 +20,7 @@ endforeach(k)
 set( middlePath Msgpack )
 set( sourceFile 
 	DataBuffer.cpp
+	DataRefBuffer.cpp
 	encrypter/CapCompresser.cpp
 	encrypter/XxteaEncrypter.cpp
 	encrypter/Crc32Encrypter.cpp

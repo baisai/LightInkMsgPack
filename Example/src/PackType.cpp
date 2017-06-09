@@ -24,6 +24,7 @@
 
 #include "Msgpack/PackBuffer.h"
 #include "Msgpack/DataFixBuffer.h"
+#include "Msgpack/DataRefBuffer.h"
 
 void test_pack_type()
 {
@@ -32,6 +33,7 @@ void test_pack_type()
 
 	LightInk::PackBuffer<LightInk::DataBuffer> dpb;
 	LightInk::PackBuffer< LightInk::DataFixBuffer<10> > dfpb;
+	LightInk::PackBuffer<LightInk::DataRefBuffer> drpb;
 
 
 	char charFrom = 1;
@@ -136,6 +138,11 @@ void test_pack_type()
 	dfpb.pack(ulongFrom);
 	dfpb.pack(longlongFrom);
 	dfpb.pack(ulonglongFrom);
+
+
+	drpb.pack(charFrom);
+	charTo = 0;
+	drpb.unpack(charTo);
 
 
 	LightInk::RuntimeError err = dfpb.pack(stringFrom);

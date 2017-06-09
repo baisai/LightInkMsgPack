@@ -99,6 +99,9 @@
     <ClInclude Include="..\..\include\Common\CharPtrBridge.h">
       <Filter>Common\include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\DataRefBuffer.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Common\RuntimeError.cpp">
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Msgpack\encrypter\XxteaEncrypter.cpp">
       <Filter>Msgpack\source\encrypter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Msgpack\DataRefBuffer.cpp">
+      <Filter>Msgpack\source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
