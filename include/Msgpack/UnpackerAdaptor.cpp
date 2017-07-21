@@ -35,7 +35,7 @@ namespace LightInk
 	inline RuntimeError unpack(TBuffer & buffer, T & v)
 	{
 		LogTrace("RuntimeError unpack(TBuffer & buffer, T & v)");
-		LogTraceReturn(v.unpack<TBuffer>(buffer));
+		LogTraceReturn(v.unpack(buffer));
 	}
 
 	template <typename TBuffer>
@@ -153,7 +153,7 @@ namespace LightInk
 		LogTraceReturn(err);
 	}
 
-	//²»°²È«
+	//Â²Â»Â°Â²ÃˆÂ«
 	template <typename TBuffer>
 	inline RuntimeError unpack(TBuffer & buffer, char * v)
 	{
