@@ -38,7 +38,7 @@ namespace LightInk
 	inline RuntimeError pack(TBuffer & buffer, const T & v)
 	{
 		LogTrace("RuntimeError pack(TBuffer & buffer, const T & v)");
-		LogTraceReturn(v.pack<TBuffer>(buffer));
+		LogTraceReturn(v.pack(buffer));
 	}
 
 	template <typename TBuffer>
