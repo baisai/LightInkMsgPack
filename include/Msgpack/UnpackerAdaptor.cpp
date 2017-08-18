@@ -241,18 +241,18 @@ namespace LightInk
 		RuntimeError e = RE_Success;
 		for (uint32 i = 0; i < len; ++i)
 		{
-			K k; T t;
-			e = unpack(buffer, k);
+			std::pair<K, T> elem;
+			e = unpack(buffer, elem.first);
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
 			}
-			e = unpack(buffer, t);
+			e = unpack(buffer, elem.second);
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
 			}
-			v.insert(typename std::map<K, T>::value_type(k, t));
+			v.insert(elem);
 		}
 		LogTraceReturn(e);
 	}
