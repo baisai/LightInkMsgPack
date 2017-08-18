@@ -26,6 +26,7 @@
 #define LIGHTINK_MSGPACK_UNPACKERADAPTOR_CPP_
 
 #include <vector>
+#include <map>
 #include "Unpacker.h"
 #include "Common/TypeTool.h"
 #include "Common/TypeListDefine.h"
@@ -227,6 +228,31 @@ namespace LightInk
 			{
 				LogTraceReturn(e);
 			}
+		}
+		LogTraceReturn(e);
+	}
+
+	template <typename TBuffer, typename K, typename T>
+	inline RuntimeError unpack(TBuffer & buffer, std::map<K, T> & v)
+	{
+		LogTrace("RuntimeError unpack(TBuffer & buffer, std::map<K, T> & v)");
+		uint32 len = 0;
+		Unpacker<TBuffer>::unpack_map(buffer, len);
+		RuntimeError e = RE_Success;
+		for (uint32 i = 0; i < len; ++i)
+		{
+			K k; T t;
+			e = unpack(buffer, k);
+			if (e != RE_Success)
+			{
+				LogTraceReturn(e);
+			}
+			e = unpack(buffer, t);
+			if (e != RE_Success)
+			{
+				LogTraceReturn(e);
+			}
+			v.insert(typename std::map<K, T>::value_type(k, t));
 		}
 		LogTraceReturn(e);
 	}

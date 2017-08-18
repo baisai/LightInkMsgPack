@@ -28,6 +28,7 @@
 
 #include <string.h>
 #include <vector>
+#include <map>
 #include "Packer.h"
 #include "Common/TypeTool.h"
 #include "Common/TypeListDefine.h"
@@ -226,6 +227,31 @@ namespace LightInk
 		LogTraceReturn(RE_Success);
 	}
 
+
+	template <typename TBuffer, typename K, typename T>
+	inline RuntimeError pack(TBuffer & buffer, const std::map<K, T> & v)
+	{
+		LogTrace("RuntimeError pack(TBuffer & buffer, const std::map<K, T> & v)");
+		RuntimeError e = Packer<TBuffer>::pack_map(buffer, v.size());
+		if (e != RE_Success)
+		{
+			LogTraceReturn(e);
+		}
+		for (typename std::map<K, T>::const_iterator iter = v.begin(); iter != v.end(); ++iter)
+		{
+			e = pack(buffer, iter->first);
+			if (e != RE_Success)
+			{
+				LogTraceReturn(e);
+			}
+			e = pack(buffer, iter->second);
+			if (e != RE_Success)
+			{
+				LogTraceReturn(e);
+			}
+		}
+		LogTraceReturn(RE_Success);
+	}
 
 }
 
