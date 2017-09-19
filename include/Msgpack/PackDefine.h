@@ -93,12 +93,12 @@ create_packargs(56)
 		template <typename TBuffer> \
 		::LightInk::RuntimeError pack(TBuffer & buffer) const \
 		{ \
-			return ::LightInk::pack_args(buffer, __VA_ARGS__); \
+			return ::LightInk::pack_args(buffer, ##__VA_ARGS__); \
 		} \
 		template <typename TBuffer> \
 		::LightInk::RuntimeError unpack(TBuffer & buffer) \
 		{ \
-			return ::LightInk::unpack_args(buffer, __VA_ARGS__); \
+			return ::LightInk::unpack_args(buffer, ##__VA_ARGS__); \
 		} 
 
 namespace LightInk
