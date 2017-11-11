@@ -87,6 +87,14 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
+	inline void PackBuffer<DBuffer>::reset_data_buffer(DBuffer & buffer)
+	{
+		LogTrace("void PackBuffer<DBuffer>::reset_data_buffer(DBuffer & buffer)");
+		m_buffer = buffer;
+		LogTraceReturnVoid;
+	}
+
+	template <typename DBuffer>
 	inline bool PackBuffer<DBuffer>::release()
 	{
 		LogTrace("bool PackBuffer<DBuffer>::release()");
@@ -112,6 +120,13 @@ namespace LightInk
 	{
 		LogTrace("char * PackBuffer<DBuffer>::data()");
 		LogTraceReturn((m_buffer.data() + m_readPos));
+	}
+
+	template <typename DBuffer>
+	inline DBuffer * PackBuffer<DBuffer>::get_buffer()
+	{
+		LogTrace("DBuffer * PackBuffer<DBuffer>::get_buffer()");
+		LogTraceReturn(&m_buffer);
 	}
 
 	template <typename DBuffer>
@@ -173,6 +188,13 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
+	inline RuntimeError PackBuffer<DBuffer>::write(const DataBuffer & data)
+	{
+		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const DataBuffer & data)");
+		LogTraceReturn(m_buffer.write(data.data(), data.write_pos()));
+	}
+
+	template <typename DBuffer>
 	inline RuntimeError PackBuffer<DBuffer>::write(const PackBuffer<DBuffer> & data)
 	{
 		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const PackBuffer<DBuffer> & data)");
@@ -180,30 +202,16 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
-	inline RuntimeError PackBuffer<DBuffer>::write(const char * data, uint32 size)
+	inline RuntimeError PackBuffer<DBuffer>::write(const void * data, uint32 size)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const char * data, uint32 size)");
-		LogTraceReturn(m_buffer.write(data, size));
-	}
-
-	template <typename DBuffer>
-	inline RuntimeError PackBuffer<DBuffer>::write(const signed char * data, uint32 size)
-	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const signed char * data, uint32 size)");
-		LogTraceReturn(m_buffer.write(data, size));
-	}
-
-	template <typename DBuffer>
-	inline RuntimeError PackBuffer<DBuffer>::write(const unsigned char * data, uint32 size)
-	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const unsigned char * data, uint32 size)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const void * data, uint32 size)");
 		LogTraceReturn(m_buffer.write(data, size));
 	}
 
 	template <typename DBuffer>
 	inline RuntimeError PackBuffer<DBuffer>::write(const std::string & data)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const string & data)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::write(const std::string & data)");
 		LogTraceReturn(m_buffer.write(data));
 	}
 
@@ -216,6 +224,13 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
+	inline RuntimeError PackBuffer<DBuffer>::pack(const char * data)
+	{
+		LogTrace("RuntimeError PackBuffer<DBuffer>::pack(const char * data)");
+		LogTraceReturn(LightInk::pack(*this, data));
+	}
+
+	template <typename DBuffer>
 	inline RuntimeError PackBuffer<DBuffer>::read(PackBuffer & data)
 	{
 		LogTrace("RuntimeError PackBuffer<DBuffer>::read(PackBuffer & data)");
@@ -223,35 +238,9 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
-	inline RuntimeError PackBuffer<DBuffer>::read(char * data, uint32 size)
+	inline RuntimeError PackBuffer<DBuffer>::read(void * data, uint32 size)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::read(char * data, uint32 size)");
-		RuntimeError e = m_buffer.read(data, size, m_readPos);
-		if (e != RE_Success)
-		{
-			LogTraceReturn(e);
-		}
-		m_readPos += size;
-		LogTraceReturn(RE_Success);
-	}
-
-	template <typename DBuffer>
-	inline RuntimeError PackBuffer<DBuffer>::read(signed char * data, uint32 size)
-	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::read(signed char * data, uint32 size)");
-		RuntimeError e = m_buffer.read(data, size, m_readPos);
-		if (e != RE_Success)
-		{
-			LogTraceReturn(e);
-		}
-		m_readPos += size;
-		LogTraceReturn(RE_Success);
-	}
-
-	template <typename DBuffer>
-	inline RuntimeError PackBuffer<DBuffer>::read(unsigned char * data, uint32 size)
-	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::read(unsigned char * data, uint32 size)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::read(void * data, uint32 size)");
 		RuntimeError e = m_buffer.read(data, size, m_readPos);
 		if (e != RE_Success)
 		{
@@ -264,7 +253,7 @@ namespace LightInk
 	template <typename DBuffer>
 	inline RuntimeError PackBuffer<DBuffer>::read(std::string & data, uint32 size)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::read(string & data, uint32 size)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::read(std::string & data, uint32 size)");
 		RuntimeError e = m_buffer.read(data, size, m_readPos);
 		if (e != RE_Success)
 		{
@@ -275,9 +264,9 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
-	inline RuntimeError PackBuffer<DBuffer>::read(char ** data, uint32 size)
+	inline RuntimeError PackBuffer<DBuffer>::read(const char ** data, uint32 size)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::read(char ** data, uint32 size)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::read(const char ** data, uint32 size)");
 		RuntimeError e = m_buffer.read(data, size, m_readPos);
 		if (e != RE_Success)
 		{
@@ -296,10 +285,29 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
+	inline RuntimeError PackBuffer<DBuffer>::unpack(char * data)
+	{
+		LogTrace("RuntimeError PackBuffer<DBuffer>::unpack(char * data)");
+		LogTraceReturn(LightInk::unpack(*this, data));
+	}
+
+	template <typename DBuffer>
 	template <typename T>
 	inline PackBuffer<DBuffer> & PackBuffer<DBuffer>::operator << (const T & data)
 	{
 		LogTrace("PackBuffer<DBuffer> & PackBuffer<DBuffer>::operator << (const T & data)");
+		RuntimeError e = LightInk::pack(*this, data);
+		if(e != RE_Success)
+		{
+			throw e;
+		}
+		LogTraceReturn((*this));
+	}
+
+	template <typename DBuffer>
+	inline PackBuffer<DBuffer> & PackBuffer<DBuffer>::operator << (const char * data)
+	{
+		LogTrace("PackBuffer<DBuffer> & PackBuffer<DBuffer>::operator << (const char * data)");
 		RuntimeError e = LightInk::pack(*this, data);
 		if(e != RE_Success)
 		{
@@ -322,6 +330,18 @@ namespace LightInk
 	}
 
 	template <typename DBuffer>
+	inline PackBuffer<DBuffer> & PackBuffer<DBuffer>::operator >> (char * data)
+	{
+		LogTrace("PackBuffer<DBuffer> & PackBuffer<DBuffer>::operator >> (char * data)");
+		RuntimeError e = LightInk::unpack(*this, data);
+		if(e != RE_Success)
+		{
+			throw e;
+		}
+		LogTraceReturn((*this));
+	}
+
+	template <typename DBuffer>
 	inline RuntimeError PackBuffer<DBuffer>::resize_buffer(uint32 size)
 	{
 		LogTrace("RuntimeError PackBuffer<DBuffer>::resize_buffer(uint32 size)");
@@ -330,33 +350,33 @@ namespace LightInk
 
 	template <typename DBuffer>
 	template <typename Compresser>
-	inline RuntimeError PackBuffer<DBuffer>::compress(PackBuffer<DataBuffer> & dest)
+	inline RuntimeError PackBuffer<DBuffer>::compress(DataBuffer * dest)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::compress(PackBuffer<DataBuffer> & dest)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::compress(DataBuffer * dest)");
 		LogTraceReturn(Compresser::compress(*this, dest));
 	}
 
 	template <typename DBuffer>
 	template <typename Compresser>
-	inline RuntimeError PackBuffer<DBuffer>::uncompress(PackBuffer<DataBuffer> & dest)
+	inline RuntimeError PackBuffer<DBuffer>::uncompress(DataBuffer * dest)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::uncompress(PackBuffer<DataBuffer> & dest)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::uncompress(DataBuffer * dest)");
 		LogTraceReturn(Compresser::uncompress(*this, dest));
 	}
 
 	template <typename DBuffer>
 	template <typename Encrypter>
-	inline RuntimeError PackBuffer<DBuffer>::encrypt(PackBuffer<DataBuffer> & dest, const char * key, uint32 keyLen)
+	inline RuntimeError PackBuffer<DBuffer>::encrypt(DataBuffer * dest, const char * key, uint32 keyLen)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::encrypt(PackBuffer<DataBuffer> & dest, const char * key, uint32 keyLen)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::encrypt(DataBuffer * dest, const char * key, uint32 keyLen)");
 		LogTraceReturn(Encrypter::encrypt(*this, dest, key, keyLen));
 	}
 
 	template <typename DBuffer>
 	template <typename Encrypter>
-	inline RuntimeError PackBuffer<DBuffer>::decrypt(PackBuffer<DataBuffer> & dest, const char * key, uint32 keyLen)
+	inline RuntimeError PackBuffer<DBuffer>::decrypt(DataBuffer * dest, const char * key, uint32 keyLen)
 	{
-		LogTrace("RuntimeError PackBuffer<DBuffer>::decrypt(PackBuffer<DataBuffer> & dest, const char * key, uint32 keyLen)");
+		LogTrace("RuntimeError PackBuffer<DBuffer>::decrypt(DataBuffer * dest, const char * key, uint32 keyLen)");
 		LogTraceReturn(Encrypter::decrypt(*this, dest, key, keyLen));
 	}
 

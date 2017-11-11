@@ -28,6 +28,7 @@
 
 #include "Common/Type.h"
 #include "Common/RuntimeError.h"
+#include "Msgpack/DataBuffer.h"
 
 namespace LightInk
 {
@@ -35,49 +36,49 @@ namespace LightInk
 	{
 	public:
 		template<typename TBuffer>
-		static RuntimeError encrypt(TBuffer & src, TBuffer & dest, const char * key, uint32 keyLen)
+		static RuntimeError encrypt(TBuffer & src, DataBuffer * dest, const char * key, uint32 keyLen)
 		{
 			LogTrace("RuntimeError XxteaEncrypter::encrypt(TBuffer & src, TBuffer & dest, const char * key, uint32 keyLen)");
 			src.read_pos(0);
-			dest.clear();
+			dest->clear();
 			uint32 n = (src.size() >> 2) + 1;
 			if (n <= 1)
 			{
 				n = 2;
 			}
 			n <<= 2;
-			RuntimeError e = dest.resize_buffer(n);
+			RuntimeError e = dest->resize_buffer(n);
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
 			}
-			e = encrypt(src.data(), src.size(), dest.data(), &n, key, keyLen);
+			e = encrypt(src.data(), src.size(), dest->data(), &n, key, keyLen);
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
 			}
-			dest.write_pos(n);
+			dest->write_pos(n);
 			LogTraceReturn(RE_Success);
 		}
 
 		template<typename TBuffer>
-		static RuntimeError decrypt(TBuffer & src, TBuffer & dest, const char * key, uint32 keyLen)
+		static RuntimeError decrypt(TBuffer & src, DataBuffer * dest, const char * key, uint32 keyLen)
 		{
 			LogTrace("RuntimeError XxteaEncrypter::decrypt(TBuffer & src, TBuffer & dest, const char * key, uint32 keyLen)");
 			src.read_pos(0);
-			dest.clear();
-			RuntimeError e = dest.resize_buffer(src.write_pos());
+			dest->clear();
+			RuntimeError e = dest->resize_buffer(src.write_pos());
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
 			}
 			uint32 n = 0;
-			e = decrypt(src.data(), src.size(), dest.data(), &n, key, keyLen);
+			e = decrypt(src.data(), src.size(), dest->data(), &n, key, keyLen);
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
 			}
-			dest.write_pos(n);
+			dest->write_pos(n);
 			LogTraceReturn(RE_Success);
 		}
 

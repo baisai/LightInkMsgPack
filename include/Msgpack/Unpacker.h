@@ -34,7 +34,7 @@
 namespace LightInk
 {
 	template<typename TBuffer>
-	class LIGHTINK_TEMPLATE_DECL Unpacker
+	class LIGHTINK_TEMPLATE_DECL Unpacker : public SmallObject
 	{
 	public:
 		Unpacker();
@@ -83,9 +83,9 @@ namespace LightInk
 		RuntimeError unpack_str(uint32 & l) { LogTrace("RuntimeError unpack_str(uint32 & l)"); LogTraceReturn(unpack_str(*m_buffer, l)); }
 		RuntimeError unpack_str_body(const char* b, uint32 l) { LogTrace("RuntimeError unpack_str_body(const char* b, uint32 l)"); LogTraceReturn(unpack_str_body(*m_buffer, b, l)); }
 
-		RuntimeError unpack_str_string(std::string & s) { LogTrace("RuntimeError unpack_str_string(string & s)"); LogTraceReturn(unpack_str_string(*m_buffer, s)); }
+		RuntimeError unpack_str_string(std::string & s) { LogTrace("RuntimeError unpack_str_string(std::string & s)"); LogTraceReturn(unpack_str_string(*m_buffer, s)); }
 
-		RuntimeError unpack_str_simple(char ** b, uint32 l) { LogTrace("RuntimeError unpack_str_simple(char ** b, uint32 l)"); LogTraceReturn(unpack_str_simple(*m_buffer, b, l)); }
+		RuntimeError unpack_str_simple(const char ** b, uint32 l) { LogTrace("RuntimeError unpack_str_simple(const char ** b, uint32 l)"); LogTraceReturn(unpack_str_simple(*m_buffer, b, l)); }
 
 		RuntimeError unpack_bin(uint32 & l) { LogTrace("RuntimeError unpack_bin(uint32 & l)"); LogTraceReturn(unpack_bin(*m_buffer, l)); }
 		RuntimeError unpack_bin_body(const char* b, uint32 l) { LogTrace("RuntimeError unpack_bin_body(const char* b, uint32 l)"); LogTraceReturn(unpack_bin_body(*m_buffer, b, l)); }
@@ -135,7 +135,7 @@ namespace LightInk
 
 		static RuntimeError unpack_str_string(TBuffer & buffer, std::string & s);
 
-		static RuntimeError unpack_str_simple(TBuffer & buffer, char ** b, uint32 & l);
+		static RuntimeError unpack_str_simple(TBuffer & buffer, const char ** b, uint32 & l);
 
 		static RuntimeError unpack_bin(TBuffer & buffer, uint32  & l);
 		static RuntimeError unpack_bin_body(TBuffer & buffer, char * b, uint32 l);

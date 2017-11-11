@@ -923,16 +923,16 @@ namespace LightInk
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, std::string & s)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, string & s)");
+		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, std::string & s)");
 		uint32 len = 0;
 		unpack_str(buffer, len);
 		LogTraceReturn(buffer.read(s, len));
 	}
 
 	template <typename TBuffer>
-	inline RuntimeError Unpacker<TBuffer>::unpack_str_simple(TBuffer & buffer, char ** b, uint32 & l)
+	inline RuntimeError Unpacker<TBuffer>::unpack_str_simple(TBuffer & buffer, const char ** b, uint32 & l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_simple(TBuffer & buffer, char ** b, uint32 & l)");
+		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_simple(TBuffer & buffer, const char ** b, uint32 & l)");
 		unpack_str(buffer, l);
 		LogTraceReturn(buffer.read(b, l));
 	}

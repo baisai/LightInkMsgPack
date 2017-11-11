@@ -27,7 +27,6 @@
 #define LIGHTINK_MSGPACK_PACKER_CPP_
 
 #include <string.h>
-#include <limits.h>
 #include "Packer.h"
 
 namespace LightInk
@@ -620,7 +619,7 @@ namespace LightInk
 	template <typename TBuffer>
 	inline RuntimeError Packer<TBuffer>::pack_str_string(TBuffer & buffer, const std::string & s)
 	{
-		LogTrace("RuntimeError Packer<TBuffer>::pack_str_string(TBuffer & buffer, const string & s)");
+		LogTrace("RuntimeError Packer<TBuffer>::pack_str_string(TBuffer & buffer, const std::string & s)");
 		RuntimeError err = pack_str(buffer, s.size());
 		if (err != RE_Success)
 		{

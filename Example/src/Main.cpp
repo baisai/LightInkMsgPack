@@ -22,7 +22,7 @@
  * IN THE SOFTWARE.
  */
 
-#include "Log/Log.h"
+#include "Common/Log.h"
 
 
 void test_pack_class();

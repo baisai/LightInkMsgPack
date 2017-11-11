@@ -24,20 +24,21 @@
 #ifndef LIGHTINK_COMMON_CHARPTRBRIDGE_H_
 #define LIGHTINK_COMMON_CHARPTRBRIDGE_H_
 
-#include "Common/Type.h"
 #include <string.h>
+#include "Common/Type.h"
+#include "Common/SmallObject.h"
 
 namespace LightInk
 {
-	struct LIGHTINK_DECL CharPtrBridge
+	struct LIGHTINK_DECL CharPtrBridge : public SmallObject
 	{
 		CharPtrBridge() : m_charPtr(NULL), m_len(0) { ; }
 		CharPtrBridge(const char * charPtr) : m_charPtr(charPtr), m_len(0) { if (charPtr) { m_len = strlen(charPtr); } }
-		CharPtrBridge(const char * charPtr, size_t len) : m_charPtr(charPtr), m_len(len) { ; }
+		CharPtrBridge(const char * charPtr, uint32 len) : m_charPtr(charPtr), m_len(len) { ; }
 		virtual ~CharPtrBridge() { ; }
 
 		const char * m_charPtr;
-		size_t m_len;
+		uint32 m_len;
 	};
 }
 

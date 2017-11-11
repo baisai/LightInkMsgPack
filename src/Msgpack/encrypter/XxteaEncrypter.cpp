@@ -26,7 +26,7 @@
 #define XXTEA_MX ((z >> 5 ^ y << 2) + (y >> 3 ^ z << 4) ^ (sum ^ y) + (key[p & 3 ^ e] ^ z))
 
 #include <memory.h>
-#include "Log/Log.h"
+#include "Common/Log.h"
 #include "Msgpack/encrypter/XxteaEncrypter.h"
 
 namespace LightInk

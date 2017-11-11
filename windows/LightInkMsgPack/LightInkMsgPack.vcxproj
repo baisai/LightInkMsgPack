@@ -179,7 +179,9 @@
     <ClInclude Include="..\..\include\Common\CharPtrBridge.h" />
     <ClInclude Include="..\..\include\Common\Config.h" />
     <ClInclude Include="..\..\include\Common\LightInkVersion.h" />
+    <ClInclude Include="..\..\include\Common\Log.h" />
     <ClInclude Include="..\..\include\Common\RuntimeError.h" />
+    <ClInclude Include="..\..\include\Common\SmallObject.h" />
     <ClInclude Include="..\..\include\Common\stdint_msvc2008.h" />
     <ClInclude Include="..\..\include\Common\Type.h" />
     <ClInclude Include="..\..\include\Common\TypeList.h" />
@@ -187,10 +189,10 @@
     <ClInclude Include="..\..\include\Common\TypeTool.h" />
     <ClInclude Include="..\..\include\Common\UserMemory.h" />
     <ClInclude Include="..\..\include\Common\WinSnprintf.h" />
-    <ClInclude Include="..\..\include\Log\Log.h" />
     <ClInclude Include="..\..\include\Msgpack\DataBuffer.h" />
     <ClInclude Include="..\..\include\Msgpack\DataFixBuffer.h" />
     <ClInclude Include="..\..\include\Msgpack\DataRefBuffer.h" />
+    <ClInclude Include="..\..\include\Msgpack\DataSharedBuffer.h" />
     <ClInclude Include="..\..\include\Msgpack\encrypter\CapCompresser.h" />
     <ClInclude Include="..\..\include\Msgpack\encrypter\Crc32Encrypter.h" />
     <ClInclude Include="..\..\include\Msgpack\encrypter\XxteaEncrypter.h" />
@@ -210,6 +212,7 @@
     <ClCompile Include="..\..\include\Msgpack\UnpackerAdaptor.cpp" />
     <ClCompile Include="..\..\src\Common\LightInkVersion.cpp" />
     <ClCompile Include="..\..\src\Common\RuntimeError.cpp" />
+    <ClCompile Include="..\..\src\Common\SmallObject.cpp" />
     <ClCompile Include="..\..\src\Common\WinSnprintf.c" />
     <ClCompile Include="..\..\src\Msgpack\DataBuffer.cpp" />
     <ClCompile Include="..\..\src\Msgpack\DataRefBuffer.cpp" />

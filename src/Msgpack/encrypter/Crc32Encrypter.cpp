@@ -25,7 +25,7 @@
 #define CRC32_XOR 0xffffffffL
 
 #include <memory.h>
-#include "Log/Log.h"
+#include "Common/Log.h"
 #include "Msgpack/encrypter/Crc32Encrypter.h"
 
 namespace LightInk

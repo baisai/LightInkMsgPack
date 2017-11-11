@@ -107,37 +107,10 @@ namespace LightInk
 		LogTraceReturn(m_writePos);
 	}
 
-
 	template <uint32 FixLen>
-	RuntimeError DataFixBuffer<FixLen>::write(const char * data, uint32 size)
+	RuntimeError DataFixBuffer<FixLen>::write(const void * data, uint32 size)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const char * data, uint32 size)");
-		if (m_writePos + size > FixLen)
-		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
-		}
-		memcpy(m_buffer + m_writePos, data, size);
-		m_writePos += size;
-		LogTraceReturn(RE_Success);
-	}
-
-	template <uint32 FixLen>
-	RuntimeError DataFixBuffer<FixLen>::write(const signed char * data, uint32 size)
-	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const signed char * data, uint32 size)");
-		if (m_writePos + size > FixLen)
-		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
-		}
-		memcpy(m_buffer + m_writePos, data, size);
-		m_writePos += size;
-		LogTraceReturn(RE_Success);
-	}
-
-	template <uint32 FixLen>
-	RuntimeError DataFixBuffer<FixLen>::write(const unsigned char * data, uint32 size)
-	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const unsigned char * data, uint32 size)");
+		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const void * data, uint32 size)");
 		if (m_writePos + size > FixLen)
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
@@ -150,40 +123,16 @@ namespace LightInk
 	template <uint32 FixLen>
 	inline RuntimeError DataFixBuffer<FixLen>::write(const std::string & data)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const string & data)");
+		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const std::string & data)");
 		LogTraceReturn(write(data.c_str(), data.size()));
 	}
 
 
 
 	template <uint32 FixLen>
-	RuntimeError DataFixBuffer<FixLen>::read(char * data, uint32 size, uint32 offset)
+	RuntimeError DataFixBuffer<FixLen>::read(void * data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(char * data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //超过位置
-		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
-		}
-		memcpy(data, m_buffer + offset, size);
-		LogTraceReturn(RE_Success);
-	}
-
-	template <uint32 FixLen>
-	RuntimeError DataFixBuffer<FixLen>::read(signed char * data, uint32 size, uint32 offset)
-	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(signed char * data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //超过位置
-		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
-		}
-		memcpy(data, m_buffer + offset, size);
-		LogTraceReturn(RE_Success);
-	}
-
-	template <uint32 FixLen>
-	RuntimeError DataFixBuffer<FixLen>::read(unsigned char * data, uint32 size, uint32 offset)
-	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(unsigned char * data, uint32 size, uint32 offset)");
+		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(void * data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
@@ -195,7 +144,7 @@ namespace LightInk
 	template <uint32 FixLen>
 	RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(string & data, uint32 size, uint32 offset)");
+		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
@@ -205,9 +154,9 @@ namespace LightInk
 	}
 
 	template <uint32 FixLen>
-	RuntimeError DataFixBuffer<FixLen>::read(char ** data, uint32 size, uint32 offset)
+	RuntimeError DataFixBuffer<FixLen>::read(const char ** data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(char ** data, uint32 size, uint32 offset)");
+		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(const char ** data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);

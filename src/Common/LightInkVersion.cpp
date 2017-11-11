@@ -22,7 +22,6 @@
  * IN THE SOFTWARE.
  */
 #include "Common/LightInkVersion.h"
-
 namespace LightInk
 {
 	int get_major_version ()
@@ -58,5 +57,22 @@ namespace LightInk
 	const char * get_authors()
 	{
 		return (LIGHTINK_AUTHORS);
+	}
+
+	struct LightInkVersion
+	{ 
+		LightInkVersion()
+		{
+			
+		}
+
+		static char dependLib[288];
+	};
+	char LightInkVersion::dependLib[288] = { 0 };
+	LightInkVersion liv;
+	
+	const char * get_depend_lib_version()
+	{
+		return LightInkVersion::dependLib;
 	}
 }

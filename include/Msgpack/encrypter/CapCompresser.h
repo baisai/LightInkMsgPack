@@ -28,6 +28,7 @@
 
 #include "Common/Type.h"
 #include "Common/RuntimeError.h"
+#include "Msgpack/DataBuffer.h"
 
 namespace LightInk
 {
@@ -35,15 +36,15 @@ namespace LightInk
 	{
 	public:
 		template <typename TBuffer>
-		static RuntimeError compress(TBuffer & src, TBuffer & dest)
+		static RuntimeError compress(TBuffer & src, DataBuffer * dest)
 		{
 			LogTrace("RuntimeError CapCompresser::compress(TBuffer & src, TBuffer & dest)");
 			if (src.write_pos() == 0)
 			{
 				LogTraceReturn(RE_Msgpack_EmptyData);
 			}
-			dest.clear();
-			RuntimeError e = dest.resize_buffer((src.write_pos() >> 3) + src.write_pos() + 2);
+			dest->clear();
+			RuntimeError e = dest->resize_buffer((src.write_pos() >> 3) + src.write_pos() + 2);
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
@@ -54,7 +55,7 @@ namespace LightInk
 
 			src.read_pos(0);
 			char * buffer = src.data();
-			char * destBuffer = dest.data();
+			char * destBuffer = dest->data();
 			char * flag = NULL;
 			uint32 idx = 0;
 			uint32 destSize = 0;
@@ -94,12 +95,12 @@ namespace LightInk
 				*(destBuffer + destSize) = modLen;
 				++destSize;
 			}
-			dest.write_pos(destSize);
+			dest->write_pos(destSize);
 			LogTraceReturn(RE_Success);
 		}
 
 		template <typename TBuffer>
-		static RuntimeError uncompress(TBuffer & src, TBuffer & dest)
+		static RuntimeError uncompress(TBuffer & src, DataBuffer * dest)
 		{
 			LogTrace("RuntimeError CapCompresser::uncompress(TBuffer & src, TBuffer & dest)");
 			if (src.write_pos() == 0)
@@ -108,8 +109,8 @@ namespace LightInk
 			}
 
 			uint32 pos = src.write_pos();
-			dest.clear();
-			RuntimeError e = dest.resize_buffer(pos + (pos >> 2) + 8);
+			dest->clear();
+			RuntimeError e = dest->resize_buffer(pos + (pos >> 2) + 8);
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
@@ -122,9 +123,9 @@ namespace LightInk
 			char flag = *buffer;
 			for (uint32 i = 1; i < pos; )
 			{
-				if ((destSize + 8) > dest.buffer_size())
+				if ((destSize + 8) > dest->buffer_size())
 				{
-					e = dest.resize_buffer(destSize + (destSize >> 3) + 8);
+					e = dest->resize_buffer(destSize + (destSize >> 3) + 8);
 					if (e != RE_Success)
 					{
 						LogTraceReturn(e);
@@ -134,12 +135,12 @@ namespace LightInk
 				{
 					if (flag & 1u << idx && i < pos)
 					{
-						*(dest.data() + destSize) = *(buffer + i);
+						*(dest->data() + destSize) = *(buffer + i);
 						++i;
 					}
 					else
 					{
-						*(dest.data() + destSize) = 0;
+						*(dest->data() + destSize) = 0;
 					}
 					++destSize;
 					++idx;
@@ -149,7 +150,7 @@ namespace LightInk
 				++i;
 			}
 			destSize -= (8 - *(buffer + pos - 1));
-			dest.write_pos(destSize);
+			dest->write_pos(destSize);
 			LogTraceReturn(RE_Success);
 		}
 

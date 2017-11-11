@@ -32,6 +32,7 @@
 #include "Packer.h"
 #include "Common/TypeTool.h"
 #include "Common/TypeListDefine.h"
+#include "Common/CharPtrBridge.h"
 
 namespace LightInk
 {
@@ -180,10 +181,55 @@ namespace LightInk
 	}
 
 	template <typename TBuffer>
+	inline RuntimeError pack(TBuffer &buffer, const  CharPtrBridge & cpb)
+	{
+		LogTrace("RuntimeError pack(TBuffer &buffer, const  CharPtrBridge & cpb)");
+		RuntimeError e = Packer<TBuffer>::pack_str(buffer, cpb.m_len);
+		if (e != RE_Success)
+		{
+			LogTraceReturn(e);
+		}
+		LogTraceReturn(Packer<TBuffer>::pack_str_body(buffer, cpb.m_charPtr, cpb.m_len));
+	}
+
+	template <typename TBuffer, uint32 len>
+	inline RuntimeError pack(TBuffer & buffer, const char (& v)[len])
+	{
+		LogTrace("RuntimeError pack(TBuffer & buffer, const char (& v)[len]");
+		uint32 size = strnlen(v, len);
+		RuntimeError e = Packer<TBuffer>::pack_str(buffer, size);
+		if (e != RE_Success)
+		{
+			LogTraceReturn(e);
+		}
+		LogTraceReturn(Packer<TBuffer>::pack_str_body(buffer, v, size));
+	}
+
+	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const std::string & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const string v)");
+		LogTrace("RuntimeError pack(TBuffer & buffer, const std::string v)");
 		LogTraceReturn(Packer<TBuffer>::pack_str_string(buffer, v));
+	}
+
+	template <typename TBuffer, typename T, uint32 len>
+	inline RuntimeError pack(TBuffer & buffer, const T (& v)[len])
+	{
+		LogTrace("RuntimeError pack(TBuffer & buffer, const T (& v)[len]");
+		RuntimeError e = Packer<TBuffer>::pack_array(buffer, len);
+		if (e != RE_Success)
+		{
+			LogTraceReturn(e);
+		}
+		for (uint32 i = 0; i < len; ++i)
+		{
+			e = pack(buffer, v[i]);
+			if (e != RE_Success)
+			{
+				LogTraceReturn(e);
+			}
+		}
+		LogTraceReturn(RE_Success);
 	}
 
 	template <typename TBuffer, typename T>
@@ -197,7 +243,7 @@ namespace LightInk
 		}
 		for (uint32 i = 0; i < len; ++i)
 		{
-			e = pack<TBuffer, T>(buffer, *(v + i));
+			e = pack(buffer, *(v + i));
 			if (e != RE_Success)
 			{
 				LogTraceReturn(e);
@@ -227,11 +273,10 @@ namespace LightInk
 		LogTraceReturn(RE_Success);
 	}
 
-
 	template <typename TBuffer, typename K, typename T>
 	inline RuntimeError pack(TBuffer & buffer, const std::map<K, T> & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const std::map<K, T> & v)");
+		LogTrace("RuntimeError pack(TBuffer & buffer, const std::map<K, T > & v)");
 		RuntimeError e = Packer<TBuffer>::pack_map(buffer, v.size());
 		if (e != RE_Success)
 		{

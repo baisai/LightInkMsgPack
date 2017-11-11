@@ -23,7 +23,6 @@
  */
 
 #include "Msgpack/DataBuffer.h"
-#include "Common/UserMemory.h"
 #include <stdlib.h>
 #include <memory.h>
 
@@ -32,7 +31,7 @@ namespace LightInk
 	DataBuffer::DataBuffer() : m_buffer(NULL), m_size(0), m_writePos(0)
 	{
 		LogTrace("DataBuffer::DataBuffer()");
-		//m_buffer = (char *)LightInkUerMemory->realloc_user(NULL, m_size);
+		//m_buffer = (char *)realloc_user(NULL, 0, m_size);
 		LogTraceReturnVoid;
 	}
 
@@ -41,7 +40,7 @@ namespace LightInk
 		LogTrace("DataBuffer::DataBuffer(const DataBuffer & cp)");
 		if (m_size > 0)
 		{
-			m_buffer = (char *)LightInkUerMemory->realloc_user(m_buffer, m_size);
+			m_buffer = (char *)realloc_user(m_buffer, 0, m_size);
 			memcpy(m_buffer, cp.m_buffer, m_writePos); 
 		}
 		LogTraceReturnVoid;
@@ -52,7 +51,7 @@ namespace LightInk
 		LogTrace("DataBuffer::DataBuffer(uint32 size)");
 		if (m_size > 0)
 		{
-			m_buffer = (char *)LightInkUerMemory->realloc_user(m_buffer, m_size);
+			m_buffer = (char *)realloc_user(m_buffer, 0, m_size);
 		}
 		LogTraceReturnVoid;
 	}
@@ -60,7 +59,7 @@ namespace LightInk
 	DataBuffer::~DataBuffer()
 	{
 		LogTrace("DataBuffer::~DataBuffer()");
-		LightInkUerMemory->realloc_user(m_buffer, 0);
+		realloc_user(m_buffer, m_size, 0);
 		m_size = 0;
 		m_writePos = 0;
 		m_buffer = NULL;
@@ -70,7 +69,7 @@ namespace LightInk
 	DataBuffer & DataBuffer::operator = (const DataBuffer & right)
 	{
 		LogTrace("DataBuffer & DataBuffer::operator = (const DataBuffer & right)");
-		m_buffer = (char *)LightInkUerMemory->realloc_user(m_buffer, right.m_size);
+		m_buffer = (char *)realloc_user(m_buffer, m_size, right.m_size);
 		if (right.m_size > 0)
 		{
 			memcpy(m_buffer, right.m_buffer, right.m_writePos); 
@@ -80,41 +79,9 @@ namespace LightInk
 		LogTraceReturn(*this);
 	}
 
-	RuntimeError DataBuffer::write(const char * data, uint32 size)
+	RuntimeError DataBuffer::write(const void * data, uint32 size)
 	{
-		LogTrace("RuntimeError DataBuffer::write(const char * data, uint32 size)");
-		if (m_writePos + size > m_size)
-		{
-			RuntimeError e = reset_buffer(m_writePos + size);
-			if (e != RE_Success)
-			{
-				LogTraceReturn(e);
-			}
-		}
-		memcpy(m_buffer + m_writePos, data, size);
-		m_writePos += size;
-		LogTraceReturn(RE_Success);
-	}
-
-	RuntimeError DataBuffer::write(const signed char * data, uint32 size)
-	{
-		LogTrace("RuntimeError DataBuffer::write(const signed char * data, uint32 size)");
-		if (m_writePos + size > m_size)
-		{
-			RuntimeError e = reset_buffer(m_writePos + size);
-			if (e != RE_Success)
-			{
-				LogTraceReturn(e);
-			}
-		}
-		memcpy(m_buffer + m_writePos, data, size);
-		m_writePos += size;
-		LogTraceReturn(RE_Success);
-	}
-
-	RuntimeError DataBuffer::write(const unsigned char * data, uint32 size)
-	{
-		LogTrace("RuntimeError DataBuffer::write(const unsigned char * data, uint32 size)");
+		LogTrace("RuntimeError DataBuffer::write(const void * data, uint32 size)");
 		if (m_writePos + size > m_size)
 		{
 			RuntimeError e = reset_buffer(m_writePos + size);
@@ -130,35 +97,13 @@ namespace LightInk
 
 	RuntimeError DataBuffer::write(const std::string & data)
 	{
-		LogTrace("RuntimeError DataBuffer::write(const string & data)");
+		LogTrace("RuntimeError DataBuffer::write(const std::string & data)");
 		LogTraceReturn(write(data.c_str(), data.size()));
 	}
 
-	RuntimeError DataBuffer::read(char * data, uint32 size, uint32 offset)
+	RuntimeError DataBuffer::read(void * data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataBuffer::read(char * data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //超过位置
-		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
-		}
-		memcpy(data, m_buffer + offset, size);
-		LogTraceReturn(RE_Success);
-	}
-
-	RuntimeError DataBuffer::read(signed char * data, uint32 size, uint32 offset)
-	{
-		LogTrace("RuntimeError DataBuffer::read(signed char * data, uint32 size, uint32 offset)");
-		if (m_writePos - offset < size) //超过位置
-		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
-		}
-		memcpy(data, m_buffer + offset, size);
-		LogTraceReturn(RE_Success);
-	}
-
-	RuntimeError DataBuffer::read(unsigned char * data, uint32 size, uint32 offset)
-	{
-		LogTrace("RuntimeError DataBuffer::read(unsigned char * data, uint32 size, uint32 offset)");
+		LogTrace("RuntimeError DataBuffer::read(void * data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
@@ -168,7 +113,7 @@ namespace LightInk
 	}
 	RuntimeError DataBuffer::read(std::string & data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataBuffer::read(string & data, uint32 size, uint32 offset)");
+		LogTrace("RuntimeError DataBuffer::read(std::string & data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
@@ -177,9 +122,9 @@ namespace LightInk
 		LogTraceReturn(RE_Success);
 	}
 
-	RuntimeError DataBuffer::read(char ** data, uint32 size, uint32 offset)
+	RuntimeError DataBuffer::read(const char ** data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataBuffer::read(char ** data, uint32 size, uint32 offset)");
+		LogTrace("RuntimeError DataBuffer::read(const char ** data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
 			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
@@ -191,7 +136,7 @@ namespace LightInk
 	RuntimeError DataBuffer::resize_buffer(uint32 size)
 	{
 		LogTrace("RuntimeError DataBuffer::resize_buffer(uint32 size)");
-		void * tmp = LightInkUerMemory->realloc_user(m_buffer, size);
+		void * tmp = realloc_user(m_buffer, m_size, size);
 		if (!tmp)
 		{
 			LogTraceReturn(RE_Msgpack_MemoryNotEnoughError);
@@ -215,9 +160,9 @@ namespace LightInk
 		}
 		if (m_size > 0)
 		{
-			size = ((size - m_size) << 1) + m_size;
+			size += ((m_size >> 3) + 16);
 		}
-		void* tmp = LightInkUerMemory->realloc_user(m_buffer, size);
+		void* tmp = realloc_user(m_buffer, m_size, size);
 		if(!tmp) {
 			LogTraceReturn(RE_Msgpack_MemoryNotEnoughError);
 		}

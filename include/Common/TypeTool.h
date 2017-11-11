@@ -40,18 +40,32 @@ namespace LightInk
 	{
 		enum { Result = false };
 		typedef T type;
-		static inline T & get_ref(T & data) {return data; };
-		static inline const T & get_ref(const T & data) {return data; };
+		static T & get_ref(T & data);
+		static const T & get_ref(const T & data);
 	};
+	///////////////////////////////////////////////////////////////////////
+	//inline method
+	//////////////////////////////////////////////////////////////////////
+	template <typename T>
+	inline T & IsPointer<T>::get_ref(T & data) { return data; }
+	template <typename T>
+	inline const T & IsPointer<T>::get_ref(const T & data) { return data; }
 
 	template <typename T>
 	struct IsPointer <T *>
 	{
 		enum { Result = true };
 		typedef T type;
-		static inline T & get_ref(T * data) {return *data; };
-		static inline const T & get_ref(const T * data) {return *data; };
+		static T & get_ref(T * data);
+		static const T & get_ref(const T * data);
 	};
+	///////////////////////////////////////////////////////////////////////
+	//inline method
+	//////////////////////////////////////////////////////////////////////
+	template <typename T>
+	inline T & IsPointer<T *>::get_ref(T * data) { return *data; }
+	template <typename T>
+	inline const T & IsPointer<T *>::get_ref(const T * data) { return *data; }
 
 
 	template <typename T>

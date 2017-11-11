@@ -27,12 +27,13 @@
 #include <string>
 #include "Common/RuntimeError.h"
 #include "Common/Type.h"
-#include "Log/Log.h"
+#include "Common/Log.h"
+#include "Common/SmallObject.h"
 
 namespace LightInk
 {
 	template <uint32 FixLen>
-	class LIGHTINK_TEMPLATE_DECL DataFixBuffer
+	class LIGHTINK_TEMPLATE_DECL DataFixBuffer : public SmallObject
 	{
 	public:
 		DataFixBuffer();
@@ -50,17 +51,13 @@ namespace LightInk
 		void write_pos(uint32 pos);
 		uint32 write_pos() const;
 
-		RuntimeError write(const char * data, uint32 size);
-		RuntimeError write(const signed char * data, uint32 size);
-		RuntimeError write(const unsigned char * data, uint32 size);
+		RuntimeError write(const void * data, uint32 size);
 		RuntimeError write(const std::string & data);
 
 
-		RuntimeError read(char * data, uint32 size, uint32 offset = 0);
-		RuntimeError read(signed char * data, uint32 size, uint32 offset = 0);
-		RuntimeError read(unsigned char * data, uint32 size, uint32 offset = 0);
+		RuntimeError read(void * data, uint32 size, uint32 offset = 0);
 		RuntimeError read(std::string & data, uint32 size, uint32 offset = 0);
-		RuntimeError read(char ** data, uint32 size, uint32 offset = 0);
+		RuntimeError read(const char ** data, uint32 size, uint32 offset = 0);
 
 		RuntimeError resize_buffer(uint32 size);
 

@@ -44,9 +44,9 @@ void test_compress_encrypt()
 	LightInk::PackBuffer<LightInk::DataBuffer> unxxteaBuff;
 	bool success = true;
 
-	buff.compress<LightInk::CapCompresser>(compressBuff);
+	buff.compress<LightInk::CapCompresser>(compressBuff.get_buffer());
 	LogMessage("pre size = %u, compress size = %u", buff.size(), compressBuff.size());
-	compressBuff.uncompress<LightInk::CapCompresser>(uncompressBuff);
+	compressBuff.uncompress<LightInk::CapCompresser>(uncompressBuff.get_buffer());
 	if (buff.size() != uncompressBuff.size())
 	{
 		success = false;
@@ -74,8 +74,8 @@ void test_compress_encrypt()
 	}
 
 	success = true;
-	buff.encrypt<LightInk::XxteaEncrypter>(xxteaBuff, "chendongchendong", 16);
-	xxteaBuff.decrypt<LightInk::XxteaEncrypter>(unxxteaBuff, "chendongchendong", 16);
+	buff.encrypt<LightInk::XxteaEncrypter>(xxteaBuff.get_buffer(), "chendongchendong", 16);
+	xxteaBuff.decrypt<LightInk::XxteaEncrypter>(unxxteaBuff.get_buffer(), "chendongchendong", 16);
 	if (buff.size() != unxxteaBuff.size())
 	{
 		success = false;

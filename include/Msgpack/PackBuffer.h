@@ -31,7 +31,7 @@
 namespace LightInk
 {
 	template <typename DBuffer>
-	class LIGHTINK_TEMPLATE_DECL PackBuffer
+	class LIGHTINK_TEMPLATE_DECL PackBuffer : public SmallObject
 	{
 	public:
 		PackBuffer();
@@ -41,11 +41,14 @@ namespace LightInk
 		virtual ~PackBuffer();
 		virtual PackBuffer * clone();
 		virtual PackBuffer * deep_clone();
+		virtual void reset_data_buffer(DBuffer & buffer);
 
 		virtual bool release();
 
 		void clear();
 		char * data() const;
+
+		DBuffer * get_buffer();
 
 		uint32 size() const;
 		uint32 buffer_size() const;
@@ -56,53 +59,55 @@ namespace LightInk
 		void read_pos(uint32 pos);
 		uint32 read_pos() const;
 
+		RuntimeError write(const DataBuffer & data);
+
 		RuntimeError write(const PackBuffer & data);
 
-		RuntimeError write(const char * data, uint32 size);
-
-		RuntimeError write(const signed char * data, uint32 size);
-
-		RuntimeError write(const unsigned char * data, uint32 size);
+		RuntimeError write(const void * data, uint32 size);
 
 		RuntimeError write(const std::string & data);
 
 		template <typename T>
 		RuntimeError pack(const T & data);
 
+		RuntimeError pack(const char * data);
+
 		RuntimeError read(PackBuffer & data);
 
-		RuntimeError read(char * data, uint32 size);
-
-		RuntimeError read(signed char * data, uint32 size);
-
-		RuntimeError read(unsigned char * data, uint32 size);
+		RuntimeError read(void * data, uint32 size);
 
 		RuntimeError read(std::string & data, uint32 size);
 
-		RuntimeError read(char ** data, uint32 size);
+		RuntimeError read(const char ** data, uint32 size);
 
 		template <typename T>
 		RuntimeError unpack(T & data);
 
+		RuntimeError unpack(char * data);
+
 		template <typename T>
 		PackBuffer & operator << (const T & data);
+
+		PackBuffer & operator << (const char * data);
 
 		template <typename T>
 		PackBuffer & operator >> (T & data);
 
+		PackBuffer & operator >> (char * data);
+
 		RuntimeError resize_buffer(uint32 size);
 
 		template <typename Compresser>
-		RuntimeError compress(PackBuffer<DataBuffer> & dest);
+		RuntimeError compress(DataBuffer * dest);
 
 		template <typename Compresser>
-		RuntimeError uncompress(PackBuffer<DataBuffer> & dest);
+		RuntimeError uncompress(DataBuffer * dest);
 
 		template <typename Encrypter>
-		RuntimeError encrypt(PackBuffer<DataBuffer> & dest, const char * key, uint32 keyLen);
+		RuntimeError encrypt(DataBuffer * dest, const char * key, uint32 keyLen);
 
 		template <typename Encrypter>
-		RuntimeError decrypt(PackBuffer<DataBuffer> & dest, const char * key, uint32 keyLen);
+		RuntimeError decrypt(DataBuffer * dest, const char * key, uint32 keyLen);
 
 
 	protected:

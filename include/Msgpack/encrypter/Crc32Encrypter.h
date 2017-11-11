@@ -29,6 +29,7 @@
 #include "Common/Type.h"
 #include "Common/RuntimeError.h"
 #include "Common/CharPtrBridge.h"
+#include "Common/Log.h"
 
 namespace LightInk
 {

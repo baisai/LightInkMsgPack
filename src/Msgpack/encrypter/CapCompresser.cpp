@@ -23,7 +23,7 @@
  */
 
 
-#include "Log/Log.h"
+#include "Common/Log.h"
 #include "Msgpack/encrypter/CapCompresser.h"
 
 namespace LightInk

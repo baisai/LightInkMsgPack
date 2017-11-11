@@ -25,9 +25,6 @@
     <Filter Include="Msgpack\source\encrypter">
       <UniqueIdentifier>{6a68504a-e05b-4c35-8e34-542a5f926213}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Log">
-      <UniqueIdentifier>{8399ea5f-0c48-40b2-b97b-44f443ffbf7e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Common\Type.h">
@@ -93,14 +90,20 @@
     <ClInclude Include="..\..\include\Msgpack\encrypter\XxteaEncrypter.h">
       <Filter>Msgpack\include\encrypter</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Log\Log.h">
-      <Filter>Log</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Common\CharPtrBridge.h">
       <Filter>Common\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Msgpack\DataRefBuffer.h">
       <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\Log.h">
+      <Filter>Common\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Msgpack\DataSharedBuffer.h">
+      <Filter>Msgpack\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Common\SmallObject.h">
+      <Filter>Common\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Msgpack\DataRefBuffer.cpp">
       <Filter>Msgpack\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\SmallObject.cpp">
+      <Filter>Common\source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

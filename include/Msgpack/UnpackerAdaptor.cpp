@@ -25,11 +25,14 @@
 #ifndef LIGHTINK_MSGPACK_UNPACKERADAPTOR_CPP_
 #define LIGHTINK_MSGPACK_UNPACKERADAPTOR_CPP_
 
+#include <string>
 #include <vector>
 #include <map>
 #include "Unpacker.h"
 #include "Common/TypeTool.h"
 #include "Common/TypeListDefine.h"
+#include "Common/CharPtrBridge.h"
+
 namespace LightInk
 {
 	template <typename TBuffer, typename T>
@@ -154,7 +157,7 @@ namespace LightInk
 		LogTraceReturn(err);
 	}
 
-	//Â²Â»Â°Â²ÃˆÂ«
+	//²»°²È«
 	template <typename TBuffer>
 	inline RuntimeError unpack(TBuffer & buffer, char * v)
 	{
@@ -180,29 +183,71 @@ namespace LightInk
 	}
 
 	template <typename TBuffer>
+	inline RuntimeError unpack(TBuffer & buffer, CharPtrBridge & cpb)
+	{
+		LogTrace("RuntimeError unpack(TBuffer & buffer, CharPtrBridge & cpb)");
+		LogTraceReturn(Unpacker<TBuffer>::unpack_str_simple(buffer, &cpb.m_charPtr, cpb.m_len));
+	}
+
+	template <typename TBuffer, uint32 len>
+	inline RuntimeError unpack(TBuffer & buffer, char (& v)[len])
+	{
+		LogTrace("RuntimeError unpack(TBuffer & buffer, char (& v)[len]");
+		uint32 size = 0;
+		Unpacker<TBuffer>::unpack_str(buffer, size);
+		if (size != len)
+		{
+			LogTraceReturn(RE_Msgpack_ArrayLenError);
+		}
+		LogTraceReturn(Unpacker<TBuffer>::unpack_str_body(buffer, v, size));
+	}
+
+	template <typename TBuffer>
 	inline RuntimeError unpack(TBuffer & buffer, std::string & v)
 	{
-		LogTrace("RuntimeError unpack(TBuffer & buffer, string & v)");
+		LogTrace("RuntimeError unpack(TBuffer & buffer, std::string & v)");
 		LogTraceReturn(Unpacker<TBuffer>::unpack_str_string(buffer, v));
 	}
 
 	template <typename TBuffer>
-	inline RuntimeError unpack(TBuffer & buffer, char ** v, uint32 & len)
+	inline RuntimeError unpack(TBuffer & buffer, const char ** v, uint32 & len)
 	{
-		LogTrace("RuntimeError unpack(TBuffer & buffer, char ** v, uint32 & len)");
+		LogTrace("RuntimeError unpack(TBuffer & buffer, const char ** v, uint32 & len)");
 		LogTraceReturn(Unpacker<TBuffer>::unpack_str_simple(buffer, v, len));
 	}
 
-	template <typename TBuffer, typename T>
-	inline RuntimeError unpack(TBuffer & buffer, const T * v, uint32 & len)
+	template <typename TBuffer, typename T, uint32 len>
+	inline RuntimeError unpack(TBuffer & buffer, T (& v)[len])
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const T * v, uint32 & len)");
+		LogTrace("RuntimeError pack(TBuffer & buffer, T (& v)[len]");
+		uint32 size = 0;
+		Unpacker<TBuffer>::unpack_array(buffer, size);
+		if (size != len)
+		{
+			LogTraceReturn(RE_Msgpack_ArrayLenError);
+		}
+		RuntimeError e = RE_Success;
+		for (uint32 i = 0; i < len; ++i)
+		{
+			e = unpack(buffer, *(v + i));
+			if (e != RE_Success)
+			{
+				LogTraceReturn(e);
+			}
+		}
+		LogTraceReturn(e);
+	}
+
+	template <typename TBuffer, typename T>
+	inline RuntimeError unpack(TBuffer & buffer, T * v, uint32 & len)
+	{
+		LogTrace("RuntimeError pack(TBuffer & buffer, T * v, uint32 & len)");
 		if (v)
 		{
 			RuntimeError e = RE_Success;
 			for (uint32 i = 0; i < len; ++i)
 			{
-				e = unpack<TBuffer, T>(buffer, *(v + i));
+				e = unpack(buffer, *(v + i));
 				if (e != RE_Success)
 				{
 					LogTraceReturn(e);

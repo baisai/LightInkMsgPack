@@ -33,7 +33,7 @@
 #define LIGHTINK_MINOR_VERSION_ 3
 
 //micro version component
-#define LIGHTINK_MICRO_VERSION_ 0
+#define LIGHTINK_MICRO_VERSION_ 3
 
 //prerelease version component
 //#define LIGHTINK_PRERELEASE_VERSION_ rc0

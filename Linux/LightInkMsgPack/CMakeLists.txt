@@ -8,8 +8,9 @@ set( sourceRootPath ${LightInkMsgPack_SOURCE_DIR}/../../src )
 
 set( middlePath Common )
 set( sourceFile 
-	RuntimeError.cpp
 	LightInkVersion.cpp
+	RuntimeError.cpp
+	SmallObject.cpp
 	WinSnprintf.c
 )
 foreach(k ${sourceFile} )
@@ -29,9 +30,13 @@ foreach(k ${sourceFile} )
   set( fullSourcePath ${fullSourcePath} ${sourceRootPath}/${middlePath}/${k} )
 endforeach(k)
 
-if (CMAKE_BUILD_TYPE STREQUAL Debug)
+if (CMAKE_BUILD_TYPE STREQUAL Release)
+	add_definitions("-DNDEBUG")
+else ()
 	add_definitions("-D_DEBUG")
+	set( CMAKE_BUILD_TYPE Debug )
 endif ()
+
 add_definitions("-DLIGHTINK_AS_DLL")
 add_definitions("-DLIGHTINK_EXPORTS")
 
@@ -42,6 +47,14 @@ if (CMAKE_BUILD_TYPE STREQUAL Debug)
 set(LIBRARY_OUTPUT_PATH ${LightInkMsgPack_SOURCE_DIR}/../../bin/Debug)
 else()
 set(LIBRARY_OUTPUT_PATH ${LightInkMsgPack_SOURCE_DIR}/../../bin/Release)
+endif()
+
+if (CMAKE_BUILD_TYPE STREQUAL Debug)
+set(LIBRARY_OUTPUT_PATH ${LightInkMsgPack_SOURCE_DIR}/../../bin/Debug)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -W -pipe -fPIC")
+else()
+set(LIBRARY_OUTPUT_PATH ${LightInkMsgPack_SOURCE_DIR}/../../bin/Release)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -W -pipe -fPIC")
 endif()
 
 unset(middlePath)
