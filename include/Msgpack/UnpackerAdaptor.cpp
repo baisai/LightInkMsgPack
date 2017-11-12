@@ -215,6 +215,13 @@ namespace LightInk
 		LogTrace("RuntimeError unpack(TBuffer & buffer, const char ** v, uint32 & len)");
 		LogTraceReturn(Unpacker<TBuffer>::unpack_str_simple(buffer, v, len));
 	}
+	
+	template <typename TBuffer>
+	inline RuntimeError unpack(TBuffer & buffer, char ** v, uint32 & len)
+	{
+		LogTrace("RuntimeError unpack(TBuffer & buffer, char ** v, uint32 & len)");
+		LogTraceReturn(Unpacker<TBuffer>::unpack_str_simple(buffer, const_cast<const char **>(v), len));
+	}
 
 	template <typename TBuffer, typename T, uint32 len>
 	inline RuntimeError unpack(TBuffer & buffer, T (& v)[len])
