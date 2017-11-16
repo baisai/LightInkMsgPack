@@ -30,10 +30,10 @@ namespace LightInk
 {
 	RuntimeError CapCompresser::compress(const char * src, uint32 srcLen, char * dest, uint32 * destLen)
 	{
-		LogTrace("RuntimeError CapCompresser::compress(const char * src, uint32 srcLen, char * dest, uint32 * destLen)");
+		LogTraceStepCall("RuntimeError CapCompresser::compress(const char * src, uint32 srcLen, char * dest, uint32 * destLen)");
 		if (srcLen == 0)
 		{
-			LogTraceReturn(RE_Msgpack_EmptyData);
+			LogTraceStepReturn(RE_Msgpack_EmptyData);
 		}
 
 		uint32 modLen = srcLen & 0x00000007;
@@ -78,15 +78,15 @@ namespace LightInk
 			*(dest + dl) = modLen;
 			++dl;
 		}
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	RuntimeError CapCompresser::uncompress(const char * src, uint32 srcLen, char * dest, uint32 * destLen)
 	{
-		LogTrace("RuntimeError CapCompresser::uncompress(const char * src, uint32 srcLen, char * dest, uint32 * destLen)");
+		LogTraceStepCall("RuntimeError CapCompresser::uncompress(const char * src, uint32 srcLen, char * dest, uint32 * destLen)");
 		if (srcLen == 0)
 		{
-			LogTraceReturn(RE_Msgpack_EmptyData);
+			LogTraceStepReturn(RE_Msgpack_EmptyData);
 		}
 
 		uint32 pos = srcLen - 1;
@@ -116,22 +116,22 @@ namespace LightInk
 			++i;
 		}
 		dl -= (8 - *(src + pos));
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 
 	uint32 CapCompresser::get_compress_max_len(uint32 srcLen)
 	{
-		LogTrace("uint32 CapCompresser::get_compress_max_len(uint32 srcLen)");
-		LogTraceReturn(((srcLen >> 3) + srcLen + 2));
+		LogTraceStepCall("uint32 CapCompresser::get_compress_max_len(uint32 srcLen)");
+		LogTraceStepReturn(((srcLen >> 3) + srcLen + 2));
 	}
 
 	RuntimeError CapCompresser::get_uncompress_len(const char * src, uint32 srcLen, uint32 * destLen)
 	{
-		LogTrace("RuntimeError CapCompresser::get_uncompress_len(const char * src, uint32 srcLen, uint32 * destLen)");
+		LogTraceStepCall("RuntimeError CapCompresser::get_uncompress_len(const char * src, uint32 srcLen, uint32 * destLen)");
 		if (srcLen == 0)
 		{
-			LogTraceReturn(RE_Msgpack_EmptyData);
+			LogTraceStepReturn(RE_Msgpack_EmptyData);
 		}
 
 		uint32 pos = srcLen - 1;
@@ -156,7 +156,7 @@ namespace LightInk
 			++i;
 		}
 		dl -= (8 - *(src + pos));
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 

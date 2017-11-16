@@ -69,41 +69,41 @@ namespace LightInk
 
 	inline void DataRefBuffer::clear()
 	{
-		LogTrace("DataRefBuffer::clear()");
+		LogTraceStepCall("DataRefBuffer::clear()");
 		m_buffer = NULL;
 		m_size = 0;
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 
 	//warning can not use write 
 	inline char * DataRefBuffer::data() const
 	{
-		LogTrace("char * DataRefBuffer::data() const");
-		LogTraceReturn(const_cast<char *>(m_buffer));
+		LogTraceStepCall("char * DataRefBuffer::data() const");
+		LogTraceStepReturn(const_cast<char *>(m_buffer));
 	}
 
 	inline uint32 DataRefBuffer::buffer_size() const
 	{
-		LogTrace("uint32 DataRefBuffer::buffer_size() const");
-		LogTraceReturn(m_size);
+		LogTraceStepCall("uint32 DataRefBuffer::buffer_size() const");
+		LogTraceStepReturn(m_size);
 	}
 
 	inline void DataRefBuffer::write_pos(uint32 pos)
 	{
-		LogTrace("void DataRefBuffer::write_pos(uint32 pos)");
-		LogTraceReturnVoid;
+		LogTraceStepCall("void DataRefBuffer::write_pos(uint32 pos)");
+		LogTraceStepReturnVoid;
 	}
 
 	inline uint32 DataRefBuffer::write_pos() const
 	{
-		LogTrace("uint32 DataRefBuffer::write_pos() const");
-		LogTraceReturn(m_size);
+		LogTraceStepCall("uint32 DataRefBuffer::write_pos() const");
+		LogTraceStepReturn(m_size);
 	}
 
 	inline RuntimeError DataRefBuffer::resize_buffer(uint32 size)
 	{
-		LogTrace("RuntimeError DataRefBuffer::resize_buffer(uint32 size)");
-		LogTraceReturn(RE_Success);
+		LogTraceStepCall("RuntimeError DataRefBuffer::resize_buffer(uint32 size)");
+		LogTraceStepReturn(RE_Success);
 	}
 
 }

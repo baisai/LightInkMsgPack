@@ -39,9 +39,9 @@ namespace LightInk
 		template<typename TBuffer>
 		inline static uint32 encrypt(TBuffer & src, uint32 key)
 		{
-			LogTrace("uint32 Crc32Encrypter::encrypt(TBuffer & src, uint32 key)");
+			LogTraceStepCall("uint32 Crc32Encrypter::encrypt(TBuffer & src, uint32 key)");
 			src.read_pos(0);
-			LogTraceReturn(encrypt(src.data(), src.size(), key));
+			LogTraceStepReturn(encrypt(src.data(), src.size(), key));
 		}
 
 		static uint32 encrypt(void * data, uint32 len, uint32 key);

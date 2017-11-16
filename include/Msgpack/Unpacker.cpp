@@ -31,212 +31,212 @@ namespace LightInk
 	template <typename TBuffer>
 	inline Unpacker<TBuffer>::Unpacker() : m_buffer(NULL) 
 	{
-		LogTrace("Unpacker<TBuffer>::Unpacker()");
-		LogTraceReturnVoid;
+		LogTraceStepCall("Unpacker<TBuffer>::Unpacker()");
+		LogTraceStepReturnVoid;
 	}
 
 	template <typename TBuffer>
 	inline Unpacker<TBuffer>::Unpacker(TBuffer* b) : m_buffer(b) 
 	{
-		LogTrace("Unpacker<TBuffer>::Unpacker(TBuffer* b)");
-		LogTraceReturnVoid;
+		LogTraceStepCall("Unpacker<TBuffer>::Unpacker(TBuffer* b)");
+		LogTraceStepReturnVoid;
 	}
 
 	template <typename TBuffer>
 	inline Unpacker<TBuffer>::Unpacker(TBuffer& b) : m_buffer(&b) 
 	{
-		LogTrace("Unpacker<TBuffer>::Unpacker(TBuffer& b)");
-		LogTraceReturnVoid;
+		LogTraceStepCall("Unpacker<TBuffer>::Unpacker(TBuffer& b)");
+		LogTraceStepReturnVoid;
 	}
 
 	template <typename TBuffer>
 	inline void Unpacker<TBuffer>::set_buffer(TBuffer * b)
 	{
-		LogTrace("void Unpacker<TBuffer>::set_buffer(TBuffer * b)");
+		LogTraceStepCall("void Unpacker<TBuffer>::set_buffer(TBuffer * b)");
 		m_buffer = b;
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 	template <typename TBuffer>
 	inline void Unpacker<TBuffer>::set_buffer(TBuffer & b)
 	{
-		LogTrace("void Unpacker<TBuffer>::set_buffer(TBuffer & b)");
+		LogTraceStepCall("void Unpacker<TBuffer>::set_buffer(TBuffer & b)");
 		m_buffer = &b;
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 	template <typename TBuffer>
 	inline TBuffer * Unpacker<TBuffer>::get_buffer()
 	{
-		LogTrace("TBuffer * Unpacker<TBuffer>::get_buffer()");
-		LogTraceReturn(m_buffer);
+		LogTraceStepCall("TBuffer * Unpacker<TBuffer>::get_buffer()");
+		LogTraceStepReturn(m_buffer);
 	}
 
 	template <typename TBuffer>
 	inline uint8 Unpacker<TBuffer>::get_pack_type(TBuffer & buffer)
 	{
-		LogTrace("uint8 Unpacker<TBuffer>::get_pack_type(TBuffer & buffer)");
-		LogTraceReturn((*reinterpret_cast<const unsigned char*>(buffer.data())));
+		LogTraceStepCall("uint8 Unpacker<TBuffer>::get_pack_type(TBuffer & buffer)");
+		LogTraceStepReturn((*reinterpret_cast<const unsigned char*>(buffer.data())));
 	}
 
 	template <typename TBuffer>
 	inline uint32 Unpacker<TBuffer>::clear_pack_type(TBuffer & buffer, uint8 packType)
 	{
-		LogTrace("uint32 Unpacker<TBuffer>::clear_pack_type(TBuffer & buffer, uint8 packType)");
-		LogTraceReturn(buffer.size());
+		LogTraceStepCall("uint32 Unpacker<TBuffer>::clear_pack_type(TBuffer & buffer, uint8 packType)");
+		LogTraceStepReturn(buffer.size());
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_uint8(TBuffer & buffer, uint8 & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_uint8(TBuffer & buffer, uint8 & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_uint8(TBuffer & buffer, uint8 & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_uint8<uint8>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_uint16(TBuffer & buffer, uint16 & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_uint16(TBuffer & buffer, uint16 & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_uint16(TBuffer & buffer, uint16 & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_uint16<uint16>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_uint32(TBuffer & buffer, uint32 & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_uint32(TBuffer & buffer, uint32 & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_uint32(TBuffer & buffer, uint32 & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_uint32<uint32>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_uint64(TBuffer & buffer, uint64 & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_uint64(TBuffer & buffer, uint64 & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_uint64(TBuffer & buffer, uint64 & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_uint64<uint64>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_int8(TBuffer & buffer, int8 & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_int8(TBuffer & buffer, int8 & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_int8(TBuffer & buffer, int8 & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_int8<int8>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_int16(TBuffer & buffer, int16 & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_int16(TBuffer & buffer, int16 & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_int16(TBuffer & buffer, int16 & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_int16<int16>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_int32(TBuffer & buffer, int32 & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_int32(TBuffer & buffer, int32 & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_int32(TBuffer & buffer, int32 & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_int32<int32>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_int64(TBuffer & buffer, int64 & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_int64(TBuffer & buffer, int64 & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_int64(TBuffer & buffer, int64 & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_int64<int64>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_char(TBuffer & buffer, char  & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_char(TBuffer & buffer, char  & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_char(TBuffer & buffer, char  & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 #if defined(CHAR_MIN)
 #if CHAR_MIN < 0
@@ -251,36 +251,36 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_signed_char(TBuffer & buffer, signed char & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_signed_char(TBuffer & buffer, signed char & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_signed_char(TBuffer & buffer, signed char & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		e = unpack_imp_int8<signed char>(buffer, d, t);
 		if (e != RE_Success)
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_short(TBuffer & buffer, short & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_short(TBuffer & buffer, short & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_short(TBuffer & buffer, short & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 
 #if defined(SIZEOF_SHORT)
@@ -315,18 +315,18 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_int(TBuffer & buffer, int & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_int(TBuffer & buffer, int & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_int(TBuffer & buffer, int & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 
 #if defined(SIZEOF_INT)
@@ -361,18 +361,18 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_long(TBuffer & buffer, long & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_long(TBuffer & buffer, long & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_long(TBuffer & buffer, long & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		
 #if defined(SIZEOF_LONG)
@@ -407,18 +407,18 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_long_long(TBuffer & buffer, long long & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_long_long(TBuffer & buffer, long long & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_long_long(TBuffer & buffer, long long & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		
 #if defined(SIZEOF_LONG_LONG)
@@ -453,18 +453,18 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_unsigned_char(TBuffer & buffer, unsigned char & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_unsigned_char(TBuffer & buffer, unsigned char & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_unsigned_char(TBuffer & buffer, unsigned char & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		
 		e = unpack_imp_uint8<unsigned char>(buffer, d, t);
@@ -473,18 +473,18 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_unsigned_short(TBuffer & buffer, unsigned short & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_unsigned_short(TBuffer & buffer, unsigned short & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_unsigned_short(TBuffer & buffer, unsigned short & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		
 #if defined(SIZEOF_SHORT)
@@ -519,18 +519,18 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_unsigned_int(TBuffer & buffer, unsigned int & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_unsigned_int(TBuffer & buffer, unsigned int & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_unsigned_int(TBuffer & buffer, unsigned int & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		
 #if defined(SIZEOF_INT)
@@ -565,18 +565,18 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_unsigned_long(TBuffer & buffer, unsigned long & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_unsigned_long(TBuffer & buffer, unsigned long & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_unsigned_long(TBuffer & buffer, unsigned long & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 
 #if defined(SIZEOF_LONG)
@@ -611,18 +611,18 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_unsigned_long_long(TBuffer & buffer, unsigned long long & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_unsigned_long_long(TBuffer & buffer, unsigned long long & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_unsigned_long_long(TBuffer & buffer, unsigned long long & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		
 #if defined(SIZEOF_LONG_LONG)
@@ -657,19 +657,19 @@ namespace LightInk
 		{
 			clear_pack_type(buffer, t);
 		}
-		LogTraceReturn(e);
+		LogTraceStepReturn(e);
 	}
 
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_float(TBuffer & buffer, float & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_float(TBuffer & buffer, float & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_float(TBuffer & buffer, float & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		if (t == _msgpack_head_float32)
 		{
@@ -677,26 +677,26 @@ namespace LightInk
 			e = buffer.read(buf, sizeof(d));
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			union { uint32 i; float f; } mem;
 			load<uint32>(mem.i, buf);
 			d = mem.f;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		clear_pack_type(buffer, t);
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_double(TBuffer & buffer, double & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_double(TBuffer & buffer, double & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_double(TBuffer & buffer, double & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		if (t == _msgpack_head_float64)
 		{
@@ -704,7 +704,7 @@ namespace LightInk
 			e = buffer.read(buf, sizeof(d));
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			union { uint64 i; double f; } mem;
 			load<uint64>(mem.i, buf);
@@ -714,53 +714,53 @@ namespace LightInk
 			mem.i = (mem.i & 0xFFFFFFFFUL) << 32UL | (mem.i >> 32UL);
 #endif
 			d = mem.f;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		clear_pack_type(buffer, t);
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_nil(TBuffer & buffer)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_nil(TBuffer & buffer)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_nil(TBuffer & buffer)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		if (t == _msgpack_head_nil)
 		{
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		clear_pack_type(buffer, t);
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_bool(TBuffer & buffer, bool & d)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_bool(TBuffer & buffer, bool & d)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_bool(TBuffer & buffer, bool & d)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		if (t == _msgpack_head_true)
 		{
 			d = true;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		} 
 		else if(t == _msgpack_head_false)
 		{
 			d = false;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		clear_pack_type(buffer, t);
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 
@@ -768,17 +768,17 @@ namespace LightInk
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_array(TBuffer & buffer, uint32 & l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_array(TBuffer & buffer, uint32 & l)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_array(TBuffer & buffer, uint32 & l)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		if (t >= _msgpack_head_fixarray_from && t <= _msgpack_head_fixarray_to) //fixarray
 		{
 			l = t & 0xfu;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		else if (t == _msgpack_head_array16)
 		{
@@ -787,11 +787,11 @@ namespace LightInk
 			e = buffer.read(buf, sizeof(len));
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			load<uint16>(len, buf);
 			l = len;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		else if (t == _msgpack_head_array32)
 		{
@@ -799,30 +799,30 @@ namespace LightInk
 			e = buffer.read(buf, sizeof(l));
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			load<uint32>(l, buf);
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		clear_pack_type(buffer, t);
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_map(TBuffer & buffer, uint32 & l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_map(TBuffer & buffer, uint32 & l)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_map(TBuffer & buffer, uint32 & l)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		if (t >= _msgpack_head_fixmap_from && t <= _msgpack_head_fixmap_to) //fixmap
 		{
 			l = t & 0xfu;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		else if (t == _msgpack_head_map16)
 		{
@@ -831,11 +831,11 @@ namespace LightInk
 			e = buffer.read(buf, sizeof(len));
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			load<uint16>(len, buf);
 			l = len;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		else if (t == _msgpack_head_map32)
 		{
@@ -843,30 +843,30 @@ namespace LightInk
 			e = buffer.read(buf, sizeof(l));
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			load<uint32>(l, buf);
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		clear_pack_type(buffer, t);
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_str(TBuffer & buffer, uint32 & l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str(TBuffer & buffer, uint32 & l)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_str(TBuffer & buffer, uint32 & l)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		if (t >= _msgpack_head_fixstr_from && t <= _msgpack_head_fixstr_to) //fixstr
 		{
 			l = t & 0x1fu;
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		switch (t)
 		{
@@ -876,10 +876,10 @@ namespace LightInk
 				e = buffer.read(&len, sizeof(len));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				l = len;
-				LogTraceReturn(RE_Success);
+				LogTraceStepReturn(RE_Success);
 			}
 		case _msgpack_head_str16:
 			{
@@ -888,11 +888,11 @@ namespace LightInk
 				e = buffer.read(buf, sizeof(len));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				load<uint16>(len, buf);
 				l = len;
-				LogTraceReturn(RE_Success);
+				LogTraceStepReturn(RE_Success);
 			}
 		case _msgpack_head_str32:
 			{
@@ -900,52 +900,52 @@ namespace LightInk
 				e = buffer.read(buf, sizeof(l));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				load<uint32>(l, buf);
-				LogTraceReturn(RE_Success);
+				LogTraceStepReturn(RE_Success);
 			}
 		default:
 			break;
 		}
 		clear_pack_type(buffer, t);
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_str_body(TBuffer & buffer, char * b, uint32 l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_body(TBuffer & buffer, char * b, uint32 l)");
-		LogTraceReturn(buffer.read(b, l));
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_str_body(TBuffer & buffer, char * b, uint32 l)");
+		LogTraceStepReturn(buffer.read(b, l));
 	}
 
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, std::string & s)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, std::string & s)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_str_string(TBuffer & buffer, std::string & s)");
 		uint32 len = 0;
 		unpack_str(buffer, len);
-		LogTraceReturn(buffer.read(s, len));
+		LogTraceStepReturn(buffer.read(s, len));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_str_simple(TBuffer & buffer, const char ** b, uint32 & l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_str_simple(TBuffer & buffer, const char ** b, uint32 & l)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_str_simple(TBuffer & buffer, const char ** b, uint32 & l)");
 		unpack_str(buffer, l);
-		LogTraceReturn(buffer.read(b, l));
+		LogTraceStepReturn(buffer.read(b, l));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_bin(TBuffer & buffer, uint32  & l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_bin(TBuffer & buffer, uint32  & l)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_bin(TBuffer & buffer, uint32  & l)");
 		uint8 t = 0;
 		RuntimeError e= buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		switch (t)
 		{
@@ -955,10 +955,10 @@ namespace LightInk
 				e = buffer.read(&len, sizeof(len));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				l = len;
-				LogTraceReturn(RE_Success);
+				LogTraceStepReturn(RE_Success);
 			}
 		case _msgpack_head_bin16:
 			{
@@ -967,11 +967,11 @@ namespace LightInk
 				e = buffer.read(buf, sizeof(len));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				load<uint16>(len, buf);
 				l = len;
-				LogTraceReturn(RE_Success);
+				LogTraceStepReturn(RE_Success);
 			}
 		case _msgpack_head_bin32:
 			{
@@ -979,35 +979,35 @@ namespace LightInk
 				e = buffer.read(buf, sizeof(l));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				load<uint32>(l, buf);
-				LogTraceReturn(RE_Success);
+				LogTraceStepReturn(RE_Success);
 			}
 		default:
 			break;
 		}
 		clear_pack_type(buffer, t);
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_bin_body(TBuffer & buffer, char * b, uint32 l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_bin_body(TBuffer & buffer, char * b, uint32 l)");
-		LogTraceReturn(buffer.read(b, l));
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_bin_body(TBuffer & buffer, char * b, uint32 l)");
+		LogTraceStepReturn(buffer.read(b, l));
 	}
 
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_ext(TBuffer & buffer, uint32 & l, int8 & type)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_ext(TBuffer & buffer, uint32 & l, int8 & type)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_ext(TBuffer & buffer, uint32 & l, int8 & type)");
 		uint8 t = 0;
 		RuntimeError e = buffer.read(&t, sizeof(t));
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		switch (t)
 		{
@@ -1032,7 +1032,7 @@ namespace LightInk
 				e = buffer.read(&len, sizeof(len));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				l = len;
 			}
@@ -1044,7 +1044,7 @@ namespace LightInk
 				e = buffer.read(buf, sizeof(len));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				load<uint16>(len, buf);
 				l = len;
@@ -1057,23 +1057,23 @@ namespace LightInk
 				e = buffer.read(buf, sizeof(l));
 				if (e != RE_Success)
 				{
-					LogTraceReturn(e);
+					LogTraceStepReturn(e);
 				}
 				load<uint32>(l, buf);
 			}
 			break;
 		default:
 			clear_pack_type(buffer, t);
-			LogTraceReturn(RE_Msgpack_TypeError);
+			LogTraceStepReturn(RE_Msgpack_TypeError);
 		}
-		LogTraceReturn(buffer.read(&type, sizeof(type)));
+		LogTraceStepReturn(buffer.read(&type, sizeof(type)));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError Unpacker<TBuffer>::unpack_ext_body(TBuffer & buffer, char * b, uint32 l)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_ext_body(TBuffer & buffer, char * b, uint32 l)");
-		LogTraceReturn(buffer.read(b, l));
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_ext_body(TBuffer & buffer, char * b, uint32 l)");
+		LogTraceStepReturn(buffer.read(b, l));
 	}
 
 
@@ -1081,25 +1081,25 @@ namespace LightInk
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_uint8(TBuffer & buffer, typename enable_if<sizeof(T) == sizeof(uint8), T>::type & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_uint8(TBuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_uint8(TBuffer & buffer, T & d, uint8 header)");
 		if (header == _msgpack_head_uint8)
 		{
-			LogTraceReturn(buffer.read(&d, sizeof(d)));
+			LogTraceStepReturn(buffer.read(&d, sizeof(d)));
 		}
 		else if (header <= _msgpack_head_positive_fixint_to)
 		{
 			memcpy(&d, &header, sizeof(header));
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		//类型不对
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 	template <typename TBuffer>
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_uint16(TBuffer & buffer, typename enable_if<sizeof(T) == sizeof(uint16), T>::type & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_uint16(TBuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_uint16(TBuffer & buffer, T & d, uint8 header)");
 		if (header == _msgpack_head_uint16)
 		{
 			char buf[sizeof(d)];
@@ -1108,9 +1108,9 @@ namespace LightInk
 			{
 				load<T>(d, buf);
 			}
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(unpack_imp_check_int(buffer, d, header));
+		LogTraceStepReturn(unpack_imp_check_int(buffer, d, header));
 		
 	}
 
@@ -1118,7 +1118,7 @@ namespace LightInk
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_uint32(TBuffer & buffer, typename enable_if<sizeof(T) == sizeof(uint32), T>::type & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_uint32(TBuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_uint32(TBuffer & buffer, T & d, uint8 header)");
 		if (header == _msgpack_head_uint32)
 		{
 			char buf[sizeof(d)];
@@ -1127,9 +1127,9 @@ namespace LightInk
 			{
 				load<T>(d, buf);
 			}
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(unpack_imp_check_int(buffer, d, header));
+		LogTraceStepReturn(unpack_imp_check_int(buffer, d, header));
 		
 	}
 
@@ -1137,7 +1137,7 @@ namespace LightInk
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_uint64(TBuffer & buffer, typename enable_if<sizeof(T) == sizeof(uint64), T>::type & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_uint64(TBuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_uint64(TBuffer & buffer, T & d, uint8 header)");
 		if (header == _msgpack_head_uint64)
 		{
 			char buf[sizeof(d)];
@@ -1146,9 +1146,9 @@ namespace LightInk
 			{
 				load<T>(d, buf);
 			}
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(unpack_imp_check_int(buffer, d, header));
+		LogTraceStepReturn(unpack_imp_check_int(buffer, d, header));
 		
 	}
 
@@ -1156,25 +1156,25 @@ namespace LightInk
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_int8(TBuffer & buffer, typename enable_if<sizeof(T) == sizeof(int8), T>::type & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_int8(TBuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_int8(TBuffer & buffer, T & d, uint8 header)");
 		if (header == _msgpack_head_int8)
 		{
-			LogTraceReturn(buffer.read(&d, sizeof(d)));
+			LogTraceStepReturn(buffer.read(&d, sizeof(d)));
 		}
 		else if (header >= _msgpack_head_negative_fixint_from || header <= _msgpack_head_positive_fixint_to) 
 		{
 			memcpy(&d, &header, sizeof(header));
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 		//类型不对
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 	template <typename TBuffer>
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_int16(TBuffer & buffer, typename enable_if<sizeof(T) == sizeof(int16), T>::type & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_int16(TBuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_int16(TBuffer & buffer, T & d, uint8 header)");
 		if (header == _msgpack_head_int16 || header == _msgpack_head_uint16)
 		{
 			char buf[sizeof(d)];
@@ -1183,9 +1183,9 @@ namespace LightInk
 			{
 				load<T>(d, buf);
 			}
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(unpack_imp_check_int(buffer, d, header));
+		LogTraceStepReturn(unpack_imp_check_int(buffer, d, header));
 		
 	}
 
@@ -1193,7 +1193,7 @@ namespace LightInk
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_int32(TBuffer & buffer, typename enable_if<sizeof(T) == sizeof(int32), T>::type & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_int32(TBuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_int32(TBuffer & buffer, T & d, uint8 header)");
 		if (header == _msgpack_head_int32 || header == _msgpack_head_uint32)
 		{
 			char buf[sizeof(d)];
@@ -1202,9 +1202,9 @@ namespace LightInk
 			{
 				load<T>(d, buf);
 			}
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(unpack_imp_check_int(buffer, d, header));
+		LogTraceStepReturn(unpack_imp_check_int(buffer, d, header));
 	
 	}
 
@@ -1212,7 +1212,7 @@ namespace LightInk
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_int64(TBuffer & buffer, typename enable_if<sizeof(T) == sizeof(int64), T>::type & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_int64(TBuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_int64(TBuffer & buffer, T & d, uint8 header)");
 		if (header == _msgpack_head_int64 || header == _msgpack_head_uint64)
 		{
 			char buf[sizeof(d)];
@@ -1221,9 +1221,9 @@ namespace LightInk
 			{
 				load<T>(d, buf);
 			}
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(unpack_imp_check_int(buffer, d, header));
+		LogTraceStepReturn(unpack_imp_check_int(buffer, d, header));
 	}
 
 
@@ -1231,7 +1231,7 @@ namespace LightInk
 	template <typename T>
 	RuntimeError Unpacker<TBuffer>::unpack_imp_check_int(TBuffer & buffer, T & d, uint8 header)
 	{
-		LogTrace("RuntimeError Unpacker<TBuffer>::unpack_imp_check_int(Tbuffer & buffer, T & d, uint8 header)");
+		LogTraceStepCall("RuntimeError Unpacker<TBuffer>::unpack_imp_check_int(Tbuffer & buffer, T & d, uint8 header)");
 		switch (header)
 		{
 		case _msgpack_head_int32:
@@ -1239,7 +1239,7 @@ namespace LightInk
 				int32 t = 0;
 				RuntimeError e = unpack_imp_int32<int32>(buffer, t, header);
 				if (e == RE_Success) { d = static_cast<T>(t); }
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			break;
 		case _msgpack_head_uint32:
@@ -1247,7 +1247,7 @@ namespace LightInk
 				uint32 t = 0;
 				RuntimeError e = unpack_imp_uint32<uint32>(buffer, t, header);
 				if (e == RE_Success) { d = static_cast<T>(t); }
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			break;
 		case _msgpack_head_int16:
@@ -1255,7 +1255,7 @@ namespace LightInk
 				int16 t = 0;
 				RuntimeError e = unpack_imp_int16<int16>(buffer, t, header);
 				if (e == RE_Success) { d = static_cast<T>(t); }
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			break;
 		case _msgpack_head_uint16:
@@ -1263,7 +1263,7 @@ namespace LightInk
 				uint16 t = 0;
 				RuntimeError e = unpack_imp_uint16<uint16>(buffer, t, header);
 				if (e == RE_Success) { d = static_cast<T>(t); }
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			break;
 		case _msgpack_head_int8:
@@ -1271,7 +1271,7 @@ namespace LightInk
 				int8 t = 0;
 				RuntimeError e = buffer.read(&t, sizeof(t));
 				if (e == RE_Success) { d = static_cast<T>(t); }
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			break;
 		case _msgpack_head_uint8:
@@ -1279,7 +1279,7 @@ namespace LightInk
 				uint8 t = 0;
 				RuntimeError e = buffer.read(&t, sizeof(t));
 				if (e == RE_Success) { d = static_cast<T>(t); }
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			break;
 		default:
@@ -1288,12 +1288,12 @@ namespace LightInk
 				int8 t = 0;
 				memcpy(&t, &header, sizeof(header));
 				d = static_cast<T>(t);
-				LogTraceReturn(RE_Success);
+				LogTraceStepReturn(RE_Success);
 			}
 			break;
 		}
 		//类型不对
-		LogTraceReturn(RE_Msgpack_TypeError);
+		LogTraceStepReturn(RE_Msgpack_TypeError);
 	}
 
 }

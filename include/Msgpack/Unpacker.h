@@ -45,53 +45,53 @@ namespace LightInk
 		TBuffer * get_buffer();
 
 	public:
-		uint8 get_pack_type() { LogTrace("uint8 get_pack_type()"); LogTraceReturn(get_pack_type(*m_buffer)); }
+		uint8 get_pack_type() { LogTraceStepCall("uint8 get_pack_type()"); LogTraceStepReturn(get_pack_type(*m_buffer)); }
 
-		uint32 clear_pack_type(uint8 packType) { LogTrace("uint32 clear_pack_type(uint8 packType)"); LogTraceReturn(clear_pack_type(*m_buffer, packType)); }
+		uint32 clear_pack_type(uint8 packType) { LogTraceStepCall("uint32 clear_pack_type(uint8 packType)"); LogTraceStepReturn(clear_pack_type(*m_buffer, packType)); }
 
-		RuntimeError unpack_uint8(uint8 & d){ LogTrace("RuntimeError unpack_uint8(uint8 & d)"); LogTraceReturn(unpack_uint8(*m_buffer, d)); }
-		RuntimeError unpack_uint16(uint16 & d) { LogTrace("RuntimeError unpack_uint16(uint16 & d)"); LogTraceReturn(unpack_uint16(*m_buffer, d)); }
-		RuntimeError unpack_uint32(uint32 & d) { LogTrace("RuntimeError unpack_uint32(uint32 & d)"); LogTraceReturn(unpack_uint32(*m_buffer, d)); }
-		RuntimeError unpack_uint64(uint64 & d) { LogTrace("RuntimeError unpack_uint64(uint64 & d)"); LogTraceReturn(unpack_uint64(*m_buffer, d)); }
-		RuntimeError unpack_int8(int8 & d) { LogTrace("RuntimeError unpack_int8(int8 & d)"); LogTraceReturn(unpack_int8(*m_buffer ,d)); }
-		RuntimeError unpack_int16(int16 & d) { LogTrace("RuntimeError unpack_int16(int16 & d)"); LogTraceReturn(unpack_int16(*m_buffer, d)); }
-		RuntimeError unpack_int32(int32 & d) { LogTrace("RuntimeError unpack_int32(int32 & d)"); LogTraceReturn(unpack_int32(*m_buffer, d)); }
-		RuntimeError unpack_int64(int64 & d) { LogTrace("RuntimeError unpack_int64(int64 & d)"); LogTraceReturn(unpack_int64(*m_buffer, d)); }
+		RuntimeError unpack_uint8(uint8 & d){ LogTraceStepCall("RuntimeError unpack_uint8(uint8 & d)"); LogTraceStepReturn(unpack_uint8(*m_buffer, d)); }
+		RuntimeError unpack_uint16(uint16 & d) { LogTraceStepCall("RuntimeError unpack_uint16(uint16 & d)"); LogTraceStepReturn(unpack_uint16(*m_buffer, d)); }
+		RuntimeError unpack_uint32(uint32 & d) { LogTraceStepCall("RuntimeError unpack_uint32(uint32 & d)"); LogTraceStepReturn(unpack_uint32(*m_buffer, d)); }
+		RuntimeError unpack_uint64(uint64 & d) { LogTraceStepCall("RuntimeError unpack_uint64(uint64 & d)"); LogTraceStepReturn(unpack_uint64(*m_buffer, d)); }
+		RuntimeError unpack_int8(int8 & d) { LogTraceStepCall("RuntimeError unpack_int8(int8 & d)"); LogTraceStepReturn(unpack_int8(*m_buffer ,d)); }
+		RuntimeError unpack_int16(int16 & d) { LogTraceStepCall("RuntimeError unpack_int16(int16 & d)"); LogTraceStepReturn(unpack_int16(*m_buffer, d)); }
+		RuntimeError unpack_int32(int32 & d) { LogTraceStepCall("RuntimeError unpack_int32(int32 & d)"); LogTraceStepReturn(unpack_int32(*m_buffer, d)); }
+		RuntimeError unpack_int64(int64 & d) { LogTraceStepCall("RuntimeError unpack_int64(int64 & d)"); LogTraceStepReturn(unpack_int64(*m_buffer, d)); }
 
-		RuntimeError unpack_char(char & d) { LogTrace("RuntimeError unpack_char(char & d)"); LogTraceReturn(unpack_char(*m_buffer, d)); }
-		RuntimeError unpack_signed_char(signed char & d) { LogTrace("RuntimeError unpack_signed_char(signed char & d)"); LogTraceReturn(unpack_signed_char(*m_buffer, d)); }
-		RuntimeError unpack_short(short & d)  { LogTrace("RuntimeError unpack_short(short & d)"); LogTraceReturn(unpack_short(*m_buffer, d)); }
-		RuntimeError unpack_int(int & d) { LogTrace("RuntimeError unpack_int(int & d)"); LogTraceReturn(unpack_int(*m_buffer, d)); }
-		RuntimeError unpack_long(long & d) { LogTrace("RuntimeError unpack_long(long & d)"); LogTraceReturn(unpack_long(*m_buffer, d)); }
-		RuntimeError unpack_long_long(long long & d) { LogTrace("RuntimeError unpack_long_long(long long & d)"); LogTraceReturn(unpack_long_long(*m_buffer, d)); }
-		RuntimeError unpack_unsigned_char(unsigned char & d) { LogTrace("RuntimeError unpack_unsigned_char(unsigned char & d)"); LogTraceReturn(unpack_unsigned_char(*m_buffer, d)); }
-		RuntimeError unpack_unsigned_short(unsigned short & d) { LogTrace("RuntimeError unpack_unsigned_short(unsigned short & d)"); LogTraceReturn(unpack_unsigned_short(*m_buffer, d)); }
-		RuntimeError unpack_unsigned_int(unsigned int & d) { LogTrace("RuntimeError unpack_unsigned_int(unsigned int & d)"); LogTraceReturn(unpack_unsigned_int(*m_buffer, d)); }
-		RuntimeError unpack_unsigned_long(unsigned long & d) { LogTrace("RuntimeError unpack_unsigned_long(unsigned long & d)"); LogTraceReturn(unpack_unsigned_long(*m_buffer, d)); }
-		RuntimeError unpack_unsigned_long_long(unsigned long long & d) { LogTrace("RuntimeError unpack_unsigned_long_long(unsigned long long & d)"); LogTraceReturn(unpack_unsigned_long_long(*m_buffer, d)); }
+		RuntimeError unpack_char(char & d) { LogTraceStepCall("RuntimeError unpack_char(char & d)"); LogTraceStepReturn(unpack_char(*m_buffer, d)); }
+		RuntimeError unpack_signed_char(signed char & d) { LogTraceStepCall("RuntimeError unpack_signed_char(signed char & d)"); LogTraceStepReturn(unpack_signed_char(*m_buffer, d)); }
+		RuntimeError unpack_short(short & d)  { LogTraceStepCall("RuntimeError unpack_short(short & d)"); LogTraceStepReturn(unpack_short(*m_buffer, d)); }
+		RuntimeError unpack_int(int & d) { LogTraceStepCall("RuntimeError unpack_int(int & d)"); LogTraceStepReturn(unpack_int(*m_buffer, d)); }
+		RuntimeError unpack_long(long & d) { LogTraceStepCall("RuntimeError unpack_long(long & d)"); LogTraceStepReturn(unpack_long(*m_buffer, d)); }
+		RuntimeError unpack_long_long(long long & d) { LogTraceStepCall("RuntimeError unpack_long_long(long long & d)"); LogTraceStepReturn(unpack_long_long(*m_buffer, d)); }
+		RuntimeError unpack_unsigned_char(unsigned char & d) { LogTraceStepCall("RuntimeError unpack_unsigned_char(unsigned char & d)"); LogTraceStepReturn(unpack_unsigned_char(*m_buffer, d)); }
+		RuntimeError unpack_unsigned_short(unsigned short & d) { LogTraceStepCall("RuntimeError unpack_unsigned_short(unsigned short & d)"); LogTraceStepReturn(unpack_unsigned_short(*m_buffer, d)); }
+		RuntimeError unpack_unsigned_int(unsigned int & d) { LogTraceStepCall("RuntimeError unpack_unsigned_int(unsigned int & d)"); LogTraceStepReturn(unpack_unsigned_int(*m_buffer, d)); }
+		RuntimeError unpack_unsigned_long(unsigned long & d) { LogTraceStepCall("RuntimeError unpack_unsigned_long(unsigned long & d)"); LogTraceStepReturn(unpack_unsigned_long(*m_buffer, d)); }
+		RuntimeError unpack_unsigned_long_long(unsigned long long & d) { LogTraceStepCall("RuntimeError unpack_unsigned_long_long(unsigned long long & d)"); LogTraceStepReturn(unpack_unsigned_long_long(*m_buffer, d)); }
 
-		RuntimeError unpack_float(float & d) { LogTrace("RuntimeError unpack_float(float & d)"); LogTraceReturn(unpack_float(*m_buffer, d)); }
-		RuntimeError unpack_double(double & d) { LogTrace("RuntimeError unpack_double(double & d)"); LogTraceReturn(unpack_double(*m_buffer, d)); }
+		RuntimeError unpack_float(float & d) { LogTraceStepCall("RuntimeError unpack_float(float & d)"); LogTraceStepReturn(unpack_float(*m_buffer, d)); }
+		RuntimeError unpack_double(double & d) { LogTraceStepCall("RuntimeError unpack_double(double & d)"); LogTraceStepReturn(unpack_double(*m_buffer, d)); }
 
-		RuntimeError unpack_nil() { LogTrace("RuntimeError unpack_nil()"); LogTraceReturn(unpack_nil(*m_buffer)); }
-		RuntimeError unpack_bool(bool & d) { LogTrace("RuntimeError unpack_bool(bool & d)"); LogTraceReturn(unpack_bool(*m_buffer, d)); }
+		RuntimeError unpack_nil() { LogTraceStepCall("RuntimeError unpack_nil()"); LogTraceStepReturn(unpack_nil(*m_buffer)); }
+		RuntimeError unpack_bool(bool & d) { LogTraceStepCall("RuntimeError unpack_bool(bool & d)"); LogTraceStepReturn(unpack_bool(*m_buffer, d)); }
 
-		RuntimeError unpack_array(uint32 & l) { LogTrace("RuntimeError unpack_array(uint32 & l)"); LogTraceReturn(unpack_array(*m_buffer, l)); }
+		RuntimeError unpack_array(uint32 & l) { LogTraceStepCall("RuntimeError unpack_array(uint32 & l)"); LogTraceStepReturn(unpack_array(*m_buffer, l)); }
 
-		RuntimeError unpack_map(uint32 & l) { LogTrace("RuntimeError unpack_map(uint32 & l)"); LogTraceReturn(unpack_map(*m_buffer, l)); }
+		RuntimeError unpack_map(uint32 & l) { LogTraceStepCall("RuntimeError unpack_map(uint32 & l)"); LogTraceStepReturn(unpack_map(*m_buffer, l)); }
 
-		RuntimeError unpack_str(uint32 & l) { LogTrace("RuntimeError unpack_str(uint32 & l)"); LogTraceReturn(unpack_str(*m_buffer, l)); }
-		RuntimeError unpack_str_body(const char* b, uint32 l) { LogTrace("RuntimeError unpack_str_body(const char* b, uint32 l)"); LogTraceReturn(unpack_str_body(*m_buffer, b, l)); }
+		RuntimeError unpack_str(uint32 & l) { LogTraceStepCall("RuntimeError unpack_str(uint32 & l)"); LogTraceStepReturn(unpack_str(*m_buffer, l)); }
+		RuntimeError unpack_str_body(const char* b, uint32 l) { LogTraceStepCall("RuntimeError unpack_str_body(const char* b, uint32 l)"); LogTraceStepReturn(unpack_str_body(*m_buffer, b, l)); }
 
-		RuntimeError unpack_str_string(std::string & s) { LogTrace("RuntimeError unpack_str_string(std::string & s)"); LogTraceReturn(unpack_str_string(*m_buffer, s)); }
+		RuntimeError unpack_str_string(std::string & s) { LogTraceStepCall("RuntimeError unpack_str_string(std::string & s)"); LogTraceStepReturn(unpack_str_string(*m_buffer, s)); }
 
-		RuntimeError unpack_str_simple(const char ** b, uint32 l) { LogTrace("RuntimeError unpack_str_simple(const char ** b, uint32 l)"); LogTraceReturn(unpack_str_simple(*m_buffer, b, l)); }
+		RuntimeError unpack_str_simple(const char ** b, uint32 l) { LogTraceStepCall("RuntimeError unpack_str_simple(const char ** b, uint32 l)"); LogTraceStepReturn(unpack_str_simple(*m_buffer, b, l)); }
 
-		RuntimeError unpack_bin(uint32 & l) { LogTrace("RuntimeError unpack_bin(uint32 & l)"); LogTraceReturn(unpack_bin(*m_buffer, l)); }
-		RuntimeError unpack_bin_body(const char* b, uint32 l) { LogTrace("RuntimeError unpack_bin_body(const char* b, uint32 l)"); LogTraceReturn(unpack_bin_body(*m_buffer, b, l)); }
+		RuntimeError unpack_bin(uint32 & l) { LogTraceStepCall("RuntimeError unpack_bin(uint32 & l)"); LogTraceStepReturn(unpack_bin(*m_buffer, l)); }
+		RuntimeError unpack_bin_body(const char* b, uint32 l) { LogTraceStepCall("RuntimeError unpack_bin_body(const char* b, uint32 l)"); LogTraceStepReturn(unpack_bin_body(*m_buffer, b, l)); }
 
-		RuntimeError unpack_ext(uint32 & l, int8 & type) { LogTrace("RuntimeError unpack_ext(uint32 & l, int8 & type)"); LogTraceReturn(unpack_ext(*m_buffer, l, type)); }
-		RuntimeError unpack_ext_body(const char* b, uint32 l) { LogTrace("RuntimeError unpack_ext_body(const char* b, uint32 l)"); LogTraceReturn(unpack_ext_body(*m_buffer, b, l)); }
+		RuntimeError unpack_ext(uint32 & l, int8 & type) { LogTraceStepCall("RuntimeError unpack_ext(uint32 & l, int8 & type)"); LogTraceStepReturn(unpack_ext(*m_buffer, l, type)); }
+		RuntimeError unpack_ext_body(const char* b, uint32 l) { LogTraceStepCall("RuntimeError unpack_ext_body(const char* b, uint32 l)"); LogTraceStepReturn(unpack_ext_body(*m_buffer, b, l)); }
 
 	public: //static func
 
@@ -174,30 +174,30 @@ namespace LightInk
 
 		template <typename T>
 		inline static void load(typename enable_if<sizeof(T) == 1, T>::type & dst, const char* n) {
-			LogTrace("void load(typename enable_if<sizeof(T) == 1, T>::type & dst, const char* n)");
+			LogTraceStepCall("void load(typename enable_if<sizeof(T) == 1, T>::type & dst, const char* n)");
 			dst = static_cast<T>(*reinterpret_cast<const uint8*>(n));
-			LogTraceReturnVoid;
+			LogTraceStepReturnVoid;
 		}
 
 		template <typename T>
 		inline static void load(typename enable_if<sizeof(T) == 2, T>::type & dst, const char* n) {
-			LogTrace("void load(typename enable_if<sizeof(T) == 2, T>::type & dst, const char* n)");
+			LogTraceStepCall("void load(typename enable_if<sizeof(T) == 2, T>::type & dst, const char* n)");
 			_msgpack_load16(T, n, &dst);
-			LogTraceReturnVoid;
+			LogTraceStepReturnVoid;
 		}
 
 		template <typename T>
 		inline static void load(typename enable_if<sizeof(T) == 4, T>::type & dst, const char* n) {
-			LogTrace("void load(typename enable_if<sizeof(T) == 4, T>::type & dst, const char* n)");
+			LogTraceStepCall("void load(typename enable_if<sizeof(T) == 4, T>::type & dst, const char* n)");
 			_msgpack_load32(T, n, &dst);
-			LogTraceReturnVoid;
+			LogTraceStepReturnVoid;
 		}
 
 		template <typename T>
 		inline static void load(typename enable_if<sizeof(T) == 8, T>::type & dst, const char* n) {
-			LogTrace("void load(typename enable_if<sizeof(T) == 8, T>::type & dst, const char* n)");
+			LogTraceStepCall("void load(typename enable_if<sizeof(T) == 8, T>::type & dst, const char* n)");
 			_msgpack_load64(T, n, &dst);
-			LogTraceReturnVoid;
+			LogTraceStepReturnVoid;
 		}
 
 	private:

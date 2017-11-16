@@ -75,33 +75,33 @@ namespace LightInk
 	//////////////////////////////////////////////////////////////////////
 	inline bool DataBuffer::release()
 	{
-		LogTrace("bool DataBuffer::release()");
+		LogTraceStepCall("bool DataBuffer::release()");
 		clear();
-		LogTraceReturn(true);
+		LogTraceStepReturn(true);
 	}
 
 	inline void DataBuffer::clear()
 	{
-		LogTrace("DataBuffer::clear()");
+		LogTraceStepCall("DataBuffer::clear()");
 		m_writePos = 0;
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 
 	inline char * DataBuffer::data() const
 	{
-		LogTrace("char * DataBuffer::data() const");
-		LogTraceReturn(m_buffer);
+		LogTraceStepCall("char * DataBuffer::data() const");
+		LogTraceStepReturn(m_buffer);
 	}
 
 	inline uint32 DataBuffer::buffer_size() const
 	{
-		LogTrace("uint32 DataBuffer::buffer_size() const");
-		LogTraceReturn(m_size);
+		LogTraceStepCall("uint32 DataBuffer::buffer_size() const");
+		LogTraceStepReturn(m_size);
 	}
 
 	inline void DataBuffer::write_pos(uint32 pos)
 	{
-		LogTrace("void DataBuffer::write_pos(uint32 pos)");
+		LogTraceStepCall("void DataBuffer::write_pos(uint32 pos)");
 		if (pos <= m_size)
 		{
 			m_writePos = pos;
@@ -110,13 +110,13 @@ namespace LightInk
 		{
 			m_writePos = m_size;
 		}
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 
 	inline uint32 DataBuffer::write_pos() const
 	{
-		LogTrace("uint32 DataBuffer::write_pos() const");
-		LogTraceReturn(m_writePos);
+		LogTraceStepCall("uint32 DataBuffer::write_pos() const");
+		LogTraceStepReturn(m_writePos);
 	}
 
 }

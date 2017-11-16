@@ -31,100 +31,100 @@ namespace LightInk
 	template <uint32 FixLen>
 	DataFixBuffer<FixLen>::DataFixBuffer() : m_writePos(0)
 	{
-		LogTrace("DataFixBuffer<FixLen>::DataFixBuffer()");
-		LogTraceReturnVoid;
+		LogTraceStepCall("DataFixBuffer<FixLen>::DataFixBuffer()");
+		LogTraceStepReturnVoid;
 	}
 
 	template <uint32 FixLen>
 	DataFixBuffer<FixLen>::DataFixBuffer(const DataFixBuffer & cp) : m_writePos(cp.m_writePos)
 	{
-		LogTrace("DataFixBuffer<FixLen>::DataFixBuffer(const DataFixBuffer & cp)");
+		LogTraceStepCall("DataFixBuffer<FixLen>::DataFixBuffer(const DataFixBuffer & cp)");
 		memcpy(m_buffer, cp.m_buffer, m_writePos); 
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 
 	template <uint32 FixLen>
 	DataFixBuffer<FixLen>::DataFixBuffer(uint32 size) : m_writePos(0)
 	{
-		LogTrace("DataFixBuffer<FixLen>::DataFixBuffer(uint32 size)");
-		LogTraceReturnVoid;
+		LogTraceStepCall("DataFixBuffer<FixLen>::DataFixBuffer(uint32 size)");
+		LogTraceStepReturnVoid;
 	}
 
 	template <uint32 FixLen>
 	DataFixBuffer<FixLen>::~DataFixBuffer()
 	{
-		LogTrace("DataFixBuffer<FixLen>::~DataFixBuffer()");
+		LogTraceStepCall("DataFixBuffer<FixLen>::~DataFixBuffer()");
 		m_writePos = 0;
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 
 	template <uint32 FixLen>
 	DataFixBuffer<FixLen> & DataFixBuffer<FixLen>::operator = (const DataFixBuffer & right)
 	{
-		LogTrace("DataFixBuffer<FixLen> & DataFixBuffer<FixLen>::operator = (const DataFixBuffer & right)");
+		LogTraceStepCall("DataFixBuffer<FixLen> & DataFixBuffer<FixLen>::operator = (const DataFixBuffer & right)");
 		m_writePos = right.m_writePos;
 		memcpy(m_buffer, right.m_buffer, m_writePos);
-		LogTraceReturn(*this);
+		LogTraceStepReturn(*this);
 	}
 
 
 	template <uint32 FixLen>
 	inline void DataFixBuffer<FixLen>::clear()
 	{
-		LogTrace("void DataFixBuffer<FixLen>::clear()");
+		LogTraceStepCall("void DataFixBuffer<FixLen>::clear()");
 		m_writePos = 0;
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 
 	template <uint32 FixLen>
 	inline char * DataFixBuffer<FixLen>::data() const
 	{
-		LogTrace("char * DataFixBuffer<FixLen>::data() const");
-		LogTraceReturn((char *)m_buffer);
+		LogTraceStepCall("char * DataFixBuffer<FixLen>::data() const");
+		LogTraceStepReturn((char *)m_buffer);
 	}
 
 
 	template <uint32 FixLen>
 	inline uint32 DataFixBuffer<FixLen>::buffer_size() const
 	{
-		LogTrace("uint32 DataFixBuffer<FixLen>::buffer_size() const");
-		LogTraceReturn(FixLen);
+		LogTraceStepCall("uint32 DataFixBuffer<FixLen>::buffer_size() const");
+		LogTraceStepReturn(FixLen);
 	}
 
 
 	template <uint32 FixLen>
 	inline void DataFixBuffer<FixLen>::write_pos(uint32 pos)
 	{
-		LogTrace("void DataFixBuffer<FixLen>::write_pos(uint32 pos)");
+		LogTraceStepCall("void DataFixBuffer<FixLen>::write_pos(uint32 pos)");
 		m_writePos = pos;
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 
 	template <uint32 FixLen>
 	inline uint32 DataFixBuffer<FixLen>::write_pos() const
 	{
-		LogTrace("uint32 DataFixBuffer<FixLen>::write_pos() const");
-		LogTraceReturn(m_writePos);
+		LogTraceStepCall("uint32 DataFixBuffer<FixLen>::write_pos() const");
+		LogTraceStepReturn(m_writePos);
 	}
 
 	template <uint32 FixLen>
 	RuntimeError DataFixBuffer<FixLen>::write(const void * data, uint32 size)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const void * data, uint32 size)");
+		LogTraceStepCall("RuntimeError DataFixBuffer<FixLen>::write(const void * data, uint32 size)");
 		if (m_writePos + size > FixLen)
 		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
+			LogTraceStepReturn(RE_Msgpack_DataOutOfRangeError);
 		}
 		memcpy(m_buffer + m_writePos, data, size);
 		m_writePos += size;
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	template <uint32 FixLen>
 	inline RuntimeError DataFixBuffer<FixLen>::write(const std::string & data)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::write(const std::string & data)");
-		LogTraceReturn(write(data.c_str(), data.size()));
+		LogTraceStepCall("RuntimeError DataFixBuffer<FixLen>::write(const std::string & data)");
+		LogTraceStepReturn(write(data.c_str(), data.size()));
 	}
 
 
@@ -132,45 +132,45 @@ namespace LightInk
 	template <uint32 FixLen>
 	RuntimeError DataFixBuffer<FixLen>::read(void * data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(void * data, uint32 size, uint32 offset)");
+		LogTraceStepCall("RuntimeError DataFixBuffer<FixLen>::read(void * data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
+			LogTraceStepReturn(RE_Msgpack_DataOutOfRangeError);
 		}
 		memcpy(data, m_buffer + offset, size);
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	template <uint32 FixLen>
 	RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)");
+		LogTraceStepCall("RuntimeError DataFixBuffer<FixLen>::read(std::string & data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
+			LogTraceStepReturn(RE_Msgpack_DataOutOfRangeError);
 		}
 		data.append(m_buffer + offset, size);
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	template <uint32 FixLen>
 	RuntimeError DataFixBuffer<FixLen>::read(const char ** data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::read(const char ** data, uint32 size, uint32 offset)");
+		LogTraceStepCall("RuntimeError DataFixBuffer<FixLen>::read(const char ** data, uint32 size, uint32 offset)");
 		if (m_writePos - offset < size) //超过位置
 		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
+			LogTraceStepReturn(RE_Msgpack_DataOutOfRangeError);
 		}
 		*data = m_buffer + offset;
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 
 	template <uint32 FixLen>
 	inline RuntimeError DataFixBuffer<FixLen>::resize_buffer(uint32 size)
 	{
-		LogTrace("RuntimeError DataFixBuffer<FixLen>::resize_buffer(uint32 size)");
-		LogTraceReturn(RE_Msgpack_DisableResize);
+		LogTraceStepCall("RuntimeError DataFixBuffer<FixLen>::resize_buffer(uint32 size)");
+		LogTraceStepReturn(RE_Msgpack_DisableResize);
 	}
 }
 

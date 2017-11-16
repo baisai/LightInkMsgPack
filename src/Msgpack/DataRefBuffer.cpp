@@ -31,83 +31,83 @@ namespace LightInk
 {
 	DataRefBuffer::DataRefBuffer() : m_buffer(NULL), m_size(0)
 	{
-		LogTrace("DataRefBuffer::DataRefBuffer()");
-		LogTraceReturnVoid;
+		LogTraceStepCall("DataRefBuffer::DataRefBuffer()");
+		LogTraceStepReturnVoid;
 	}
 
 	DataRefBuffer::DataRefBuffer(const DataRefBuffer & cp) : m_buffer(cp.m_buffer), m_size(cp.m_size)
 	{
-		LogTrace("DataRefBuffer::DataRefBuffer(const DataRefBuffer & cp)");
-		LogTraceReturnVoid;
+		LogTraceStepCall("DataRefBuffer::DataRefBuffer(const DataRefBuffer & cp)");
+		LogTraceStepReturnVoid;
 	}
 
 	DataRefBuffer::DataRefBuffer(uint32 size) : m_buffer(NULL), m_size(0)
 	{
-		LogTrace("DataRefBuffer::DataRefBuffer(uint32 size)");
-		LogTraceReturnVoid;
+		LogTraceStepCall("DataRefBuffer::DataRefBuffer(uint32 size)");
+		LogTraceStepReturnVoid;
 	}
 
 	DataRefBuffer::~DataRefBuffer()
 	{
-		LogTrace("DataRefBuffer::~DataRefBuffer()");
+		LogTraceStepCall("DataRefBuffer::~DataRefBuffer()");
 		m_size = 0;
 		m_buffer = NULL;
-		LogTraceReturnVoid;
+		LogTraceStepReturnVoid;
 	}
 
 	DataRefBuffer & DataRefBuffer::operator = (const DataRefBuffer & right)
 	{
-		LogTrace("DataRefBuffer & DataRefBuffer::operator = (const DataRefBuffer & right)");
+		LogTraceStepCall("DataRefBuffer & DataRefBuffer::operator = (const DataRefBuffer & right)");
 		m_buffer = right.m_buffer;
 		m_size = right.m_size;
-		LogTraceReturn(*this);
+		LogTraceStepReturn(*this);
 	}
 
 	RuntimeError DataRefBuffer::write(const void * data, uint32 size)
 	{
-		LogTrace("RuntimeError DataRefBuffer::write(const void * data, uint32 size)");
+		LogTraceStepCall("RuntimeError DataRefBuffer::write(const void * data, uint32 size)");
 		m_buffer = (const char *)data;
 		m_size = size;
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	RuntimeError DataRefBuffer::write(const std::string & data)
 	{
-		LogTrace("RuntimeError DataRefBuffer::write(const std::string & data)");
-		LogTraceReturn(write(data.c_str(), data.size()));
+		LogTraceStepCall("RuntimeError DataRefBuffer::write(const std::string & data)");
+		LogTraceStepReturn(write(data.c_str(), data.size()));
 	}
 
 	RuntimeError DataRefBuffer::read(void * data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataRefBuffer::read(void * data, uint32 size, uint32 offset)");
+		LogTraceStepCall("RuntimeError DataRefBuffer::read(void * data, uint32 size, uint32 offset)");
 		if (m_size - offset < size) //超过位置
 		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
+			LogTraceStepReturn(RE_Msgpack_DataOutOfRangeError);
 		}
 		memcpy(data, m_buffer + offset, size);
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	RuntimeError DataRefBuffer::read(std::string & data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataRefBuffer::read(std::string & data, uint32 size, uint32 offset)");
+		LogTraceStepCall("RuntimeError DataRefBuffer::read(std::string & data, uint32 size, uint32 offset)");
 		if (m_size - offset < size) //超过位置
 		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
+			LogTraceStepReturn(RE_Msgpack_DataOutOfRangeError);
 		}
 		data.append(m_buffer + offset, size);
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	RuntimeError DataRefBuffer::read(const char ** data, uint32 size, uint32 offset)
 	{
-		LogTrace("RuntimeError DataRefBuffer::read(const char ** data, uint32 size, uint32 offset)");
+		LogTraceStepCall("RuntimeError DataRefBuffer::read(const char ** data, uint32 size, uint32 offset)");
 		if (m_size - offset < size) //超过位置
 		{
-			LogTraceReturn(RE_Msgpack_DataOutOfRangeError);
+			LogTraceStepReturn(RE_Msgpack_DataOutOfRangeError);
 		}
 		*data = m_buffer + offset;
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 

@@ -33,12 +33,12 @@ namespace LightInk
 {
 	RuntimeError XxteaEncrypter::encrypt(const char * src, uint32 srcLen, char * dest, uint32 * destLen, const char * key, uint32 keyLen)
 	{
-		LogTrace("RuntimeError XxteaEncrypter::encrypt(const char * src, uint32 srcLen, char * dest, uint32 * destLen, const char * key, uint32 keyLen)");
+		LogTraceStepCall("RuntimeError XxteaEncrypter::encrypt(const char * src, uint32 srcLen, char * dest, uint32 * destLen, const char * key, uint32 keyLen)");
 		int32 n = 0;
 		uint32 & ret_length = *destLen;
 		if (keyLen != 16 || srcLen < 1 || !src || !key)
 		{
-			LogTraceReturn(RE_Msgpack_DataEncryptError);
+			LogTraceStepReturn(RE_Msgpack_DataEncryptError);
 		}
 
 		n = (srcLen >> 2) + 1;
@@ -49,39 +49,39 @@ namespace LightInk
 		ret_length = n << 2;
 		memcpy(dest, src, srcLen);
 		memset(dest + srcLen, ret_length - srcLen, ret_length - srcLen);
-		LogTraceReturn(encrypt((int32 *)dest, n, (int32 *)key));
+		LogTraceStepReturn(encrypt((int32 *)dest, n, (int32 *)key));
 	}
 
 	RuntimeError XxteaEncrypter::decrypt(const char * src, uint32 srcLen, char * dest, uint32 * destLen, const char * key, uint32 keyLen)
 	{
-		LogTrace("RuntimeError XxteaEncrypter::decrypt(const char * src, uint32 srcLen, char * dest, uint32 * destLen, const char * key, uint32 keyLen)");
+		LogTraceStepCall("RuntimeError XxteaEncrypter::decrypt(const char * src, uint32 srcLen, char * dest, uint32 * destLen, const char * key, uint32 keyLen)");
 		uint32 & ret_length = *destLen;
 		if (keyLen != 16 || srcLen < 1 || (srcLen & 3U) != 0 || !src || !key)
 		{
-			LogTraceReturn(RE_Msgpack_DataEncryptError);
+			LogTraceStepReturn(RE_Msgpack_DataEncryptError);
 		}
 		memcpy(dest, src, srcLen);
 		RuntimeError e = decrypt((int32 *)dest, srcLen >> 2, (int32 *)key);
 		if(e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		int32 n = dest[srcLen - 1];
 		if (n > 4)
 		{
-			LogTraceReturn(RE_Msgpack_DataEncryptError);
+			LogTraceStepReturn(RE_Msgpack_DataEncryptError);
 		}
 		ret_length = srcLen - n;
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	RuntimeError XxteaEncrypter::encrypt(int32 * data, uint32 len, int32 * key)
 	{
-		LogTrace("RuntimeError XxteaEncrypter::encrypt(int32 * data, uint32 len, int32 * key)");
+		LogTraceStepCall("RuntimeError XxteaEncrypter::encrypt(int32 * data, uint32 len, int32 * key)");
 		int32 n = len - 1;
 		int32 z = data[n], y = data[0], p, q = 6 + 52 / len, sum = 0, e;
 		if (n < 1) {
-			LogTraceReturn(RE_Msgpack_DataEncryptError);
+			LogTraceStepReturn(RE_Msgpack_DataEncryptError);
 		}
 		while (0 < q--) {
 			sum += XXTEA_DELTA;
@@ -93,16 +93,16 @@ namespace LightInk
 			y = data[0];
 			z = data[n] += XXTEA_MX;
 		}
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	RuntimeError XxteaEncrypter::decrypt(int32 * data, uint32 len, int32 * key)
 	{
-		LogTrace("RuntimeError XxteaEncrypter::decrypt(int32 * data, uint32 len, int32 * key)");
+		LogTraceStepCall("RuntimeError XxteaEncrypter::decrypt(int32 * data, uint32 len, int32 * key)");
 		int32 n = len - 1;
 		int32 z = data[n], y = data[0], p, q = 6 + 52 / len, sum = q * XXTEA_DELTA, e;
 		if (n < 1) {
-			LogTraceReturn(RE_Msgpack_DataEncryptError);
+			LogTraceStepReturn(RE_Msgpack_DataEncryptError);
 		}
 		while (sum != 0) {
 			e = (sum >> 2) & 3;
@@ -114,31 +114,31 @@ namespace LightInk
 			y = data[0] -= XXTEA_MX;
 			sum -= XXTEA_DELTA;
 		}
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	uint32 XxteaEncrypter::get_encrypt_max_len(uint32 srcLen)
 	{
-		LogTrace("uint32 XxteaEncrypter::get_encrypt_max_len(uint32 srcLen)");
+		LogTraceStepCall("uint32 XxteaEncrypter::get_encrypt_max_len(uint32 srcLen)");
 		uint32 n = (srcLen >> 2) + 1;
 		if (n <= 1)
 		{
 			n = 2;
 		}
 		n <<= 2;
-		LogTraceReturn(n);
+		LogTraceStepReturn(n);
 	}
 
 	RuntimeError XxteaEncrypter::get_decrypt_len(const char * src, uint32 srcLen, uint32 * destLen)
 	{
-		LogTrace("RuntimeError XxteaEncrypter::get_decrypt_len(const char * src, uint32 srcLen, uint32 * destLen)");
+		LogTraceStepCall("RuntimeError XxteaEncrypter::get_decrypt_len(const char * src, uint32 srcLen, uint32 * destLen)");
 		int32 n = src[srcLen - 1];
 		if (n > 4)
 		{
-			LogTraceReturn(RE_Msgpack_DataEncryptError);
+			LogTraceStepReturn(RE_Msgpack_DataEncryptError);
 		}
 		*destLen = srcLen - n;
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 }

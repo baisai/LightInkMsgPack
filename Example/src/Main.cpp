@@ -31,7 +31,7 @@ void test_compress_encrypt();
 
 int main(int argc, char ** argv)
 {
-	LogTrace("int main(int argc, char ** argv)");
+	LogTraceStepCall("int main(int argc, char ** argv)");
 	
 	test_pack_class();
 
@@ -41,5 +41,5 @@ int main(int argc, char ** argv)
 
 	getchar();
 
-	LogTraceReturn(0);
+	LogTraceStepReturn(0);
 }

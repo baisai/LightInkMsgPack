@@ -39,263 +39,263 @@ namespace LightInk
 	template <typename TBuffer, typename T>
 	inline RuntimeError pack(TBuffer & buffer, const T & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const T & v)");
-		LogTraceReturn(v.pack(buffer));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const T & v)");
+		LogTraceStepReturn(v.pack(buffer));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const char & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const char & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_char(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const char & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_char(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const signed char & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const signed char & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_signed_char(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const signed char & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_signed_char(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const short & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const short & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_short(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const short & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_short(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const int & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const int & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_int(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const int & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_int(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const long & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const long & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_long(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const long & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_long(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const long long & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const long long & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_long_long(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const long long & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_long_long(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const unsigned char & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const unsigned char & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_unsigned_char(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const unsigned char & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_unsigned_char(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const unsigned short & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const unsigned short & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_unsigned_short(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const unsigned short & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_unsigned_short(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const unsigned int & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const unsigned int & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_unsigned_int(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const unsigned int & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_unsigned_int(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const unsigned long & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const unsigned long & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_unsigned_long(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const unsigned long & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_unsigned_long(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const unsigned long long & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const unsigned long long & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_unsigned_long_long(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const unsigned long long & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_unsigned_long_long(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const float & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const float & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_float(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const float & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_float(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const double & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const double & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_double(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const double & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_double(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const TypeEmpty &)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const TypeEmpty &)");
-		LogTraceReturn(Packer<TBuffer>::pack_nil(buffer));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const TypeEmpty &)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_nil(buffer));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const bool & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const bool & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_bool(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const bool & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_bool(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const RuntimeError & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const RuntimeError & v)");
-		LogTraceReturn(Packer<TBuffer>::pack_int(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const RuntimeError & v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_int(buffer, v));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const char * v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const char * v)");
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const char * v)");
 		uint32 len = strlen(v);
 		RuntimeError e = Packer<TBuffer>::pack_str(buffer, len);
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(Packer<TBuffer>::pack_str_body(buffer, v, len));
+		LogTraceStepReturn(Packer<TBuffer>::pack_str_body(buffer, v, len));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const char * v, uint32 len)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const char * v, uint32 len)");
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const char * v, uint32 len)");
 		RuntimeError e = Packer<TBuffer>::pack_str(buffer, len);
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(Packer<TBuffer>::pack_str_body(buffer, v, len));
+		LogTraceStepReturn(Packer<TBuffer>::pack_str_body(buffer, v, len));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer &buffer, const  CharPtrBridge & cpb)
 	{
-		LogTrace("RuntimeError pack(TBuffer &buffer, const  CharPtrBridge & cpb)");
+		LogTraceStepCall("RuntimeError pack(TBuffer &buffer, const  CharPtrBridge & cpb)");
 		RuntimeError e = Packer<TBuffer>::pack_str(buffer, cpb.m_len);
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(Packer<TBuffer>::pack_str_body(buffer, cpb.m_charPtr, cpb.m_len));
+		LogTraceStepReturn(Packer<TBuffer>::pack_str_body(buffer, cpb.m_charPtr, cpb.m_len));
 	}
 
 	template <typename TBuffer, uint32 len>
 	inline RuntimeError pack(TBuffer & buffer, const char (& v)[len])
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const char (& v)[len]");
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const char (& v)[len]");
 		uint32 size = strnlen(v, len);
 		RuntimeError e = Packer<TBuffer>::pack_str(buffer, size);
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
-		LogTraceReturn(Packer<TBuffer>::pack_str_body(buffer, v, size));
+		LogTraceStepReturn(Packer<TBuffer>::pack_str_body(buffer, v, size));
 	}
 
 	template <typename TBuffer>
 	inline RuntimeError pack(TBuffer & buffer, const std::string & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const std::string v)");
-		LogTraceReturn(Packer<TBuffer>::pack_str_string(buffer, v));
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const std::string v)");
+		LogTraceStepReturn(Packer<TBuffer>::pack_str_string(buffer, v));
 	}
 
 	template <typename TBuffer, typename T, uint32 len>
 	inline RuntimeError pack(TBuffer & buffer, const T (& v)[len])
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const T (& v)[len]");
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const T (& v)[len]");
 		RuntimeError e = Packer<TBuffer>::pack_array(buffer, len);
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		for (uint32 i = 0; i < len; ++i)
 		{
 			e = pack(buffer, v[i]);
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 		}
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	template <typename TBuffer, typename T>
 	inline RuntimeError pack(TBuffer & buffer, const T * v, uint32 len)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const T * v, uint32 len)");
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const T * v, uint32 len)");
 		RuntimeError e = Packer<TBuffer>::pack_array(buffer, len);
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		for (uint32 i = 0; i < len; ++i)
 		{
 			e = pack(buffer, *(v + i));
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 		}
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 
 	template <typename TBuffer, typename T>
 	inline RuntimeError pack(TBuffer & buffer, const std::vector<T> & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const std::vector<T> & v)");
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const std::vector<T> & v)");
 		RuntimeError e = Packer<TBuffer>::pack_array(buffer, v.size());
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		for (size_t i = 0; i < v.size(); ++i)
 		{
 			e = pack(buffer, v[i]);
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 		}
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 	template <typename TBuffer, typename K, typename T>
 	inline RuntimeError pack(TBuffer & buffer, const std::map<K, T> & v)
 	{
-		LogTrace("RuntimeError pack(TBuffer & buffer, const std::map<K, T > & v)");
+		LogTraceStepCall("RuntimeError pack(TBuffer & buffer, const std::map<K, T > & v)");
 		RuntimeError e = Packer<TBuffer>::pack_map(buffer, v.size());
 		if (e != RE_Success)
 		{
-			LogTraceReturn(e);
+			LogTraceStepReturn(e);
 		}
 		for (typename std::map<K, T>::const_iterator iter = v.begin(); iter != v.end(); ++iter)
 		{
 			e = pack(buffer, iter->first);
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 			e = pack(buffer, iter->second);
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 		}
-		LogTraceReturn(RE_Success);
+		LogTraceStepReturn(RE_Success);
 	}
 
 }

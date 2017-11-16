@@ -38,16 +38,16 @@ namespace LightInk
 		template <typename TBuffer>
 		static RuntimeError compress(TBuffer & src, DataBuffer * dest)
 		{
-			LogTrace("RuntimeError CapCompresser::compress(TBuffer & src, TBuffer & dest)");
+			LogTraceStepCall("RuntimeError CapCompresser::compress(TBuffer & src, TBuffer & dest)");
 			if (src.write_pos() == 0)
 			{
-				LogTraceReturn(RE_Msgpack_EmptyData);
+				LogTraceStepReturn(RE_Msgpack_EmptyData);
 			}
 			dest->clear();
 			RuntimeError e = dest->resize_buffer((src.write_pos() >> 3) + src.write_pos() + 2);
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 
 			uint32 modLen = src.write_pos() & 0x00000007;
@@ -96,16 +96,16 @@ namespace LightInk
 				++destSize;
 			}
 			dest->write_pos(destSize);
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 
 		template <typename TBuffer>
 		static RuntimeError uncompress(TBuffer & src, DataBuffer * dest)
 		{
-			LogTrace("RuntimeError CapCompresser::uncompress(TBuffer & src, TBuffer & dest)");
+			LogTraceStepCall("RuntimeError CapCompresser::uncompress(TBuffer & src, TBuffer & dest)");
 			if (src.write_pos() == 0)
 			{
-				LogTraceReturn(RE_Msgpack_EmptyData);
+				LogTraceStepReturn(RE_Msgpack_EmptyData);
 			}
 
 			uint32 pos = src.write_pos();
@@ -113,7 +113,7 @@ namespace LightInk
 			RuntimeError e = dest->resize_buffer(pos + (pos >> 2) + 8);
 			if (e != RE_Success)
 			{
-				LogTraceReturn(e);
+				LogTraceStepReturn(e);
 			}
 
 			src.read_pos(0);
@@ -128,7 +128,7 @@ namespace LightInk
 					e = dest->resize_buffer(destSize + (destSize >> 3) + 8);
 					if (e != RE_Success)
 					{
-						LogTraceReturn(e);
+						LogTraceStepReturn(e);
 					}
 				}
 				while (idx < 8) //0填充
@@ -151,7 +151,7 @@ namespace LightInk
 			}
 			destSize -= (8 - *(buffer + pos - 1));
 			dest->write_pos(destSize);
-			LogTraceReturn(RE_Success);
+			LogTraceStepReturn(RE_Success);
 		}
 
 		static RuntimeError compress(const char * src, uint32 srcLen, char * dest, uint32 * destLen);

@@ -32,18 +32,18 @@ namespace LightInk
 {
 	uint32 Crc32Encrypter::encrypt(void * data, uint32 len, uint32 key)
 	{
-		LogTrace("uint32 Crc32Encrypter::encrypt(void * data, uint32 len, uint32 key)");
+		LogTraceStepCall("uint32 Crc32Encrypter::encrypt(void * data, uint32 len, uint32 key)");
 		uint8 * p = (uint8 *)data;
 		while (len--)
 		{
 			key = s_crc32Table[(key ^ *p++) & 0xffL] ^ (key >> 8);
 		}
-		LogTraceReturn(key ^ CRC32_XOR);
+		LogTraceStepReturn(key ^ CRC32_XOR);
 	}
 
 	uint32 Crc32Encrypter::encrypt(const CharPtrBridge * cpb, uint32 count, uint32 key)
 	{
-		LogTrace("uint32 Crc32Encrypter::encrypt(const CharPtrBridge * cpb, uint32 count, uint32 key)");
+		LogTraceStepCall("uint32 Crc32Encrypter::encrypt(const CharPtrBridge * cpb, uint32 count, uint32 key)");
 		for (uint32 i = 0; i < count; ++i)
 		{
 			uint8 * p = (uint8 *)(cpb+i)->m_charPtr;
@@ -56,7 +56,7 @@ namespace LightInk
 				}
 			}
 		}
-		LogTraceReturn(key ^ CRC32_XOR);
+		LogTraceStepReturn(key ^ CRC32_XOR);
 	}
 
 	const uint32 Crc32Encrypter::s_crc32Table[256] = {
