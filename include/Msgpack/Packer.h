@@ -26,9 +26,11 @@
 
 #define LIGHTINK_MSGPACK_PACKER_H_
 
+#include <string>
 #include "Sysdep.h"
-#include "PackBuffer.h"
-#include "DataBuffer.h"
+#include "Common/TypeTool.h"
+#include "Common/RuntimeError.h"
+#include "Common/Log.h"
 
 namespace LightInk
 {
@@ -225,13 +227,8 @@ namespace LightInk
 	LIGHTINK_DISABLE_COPY(Packer)
 	};
 
-	template <typename TBuffer, typename T>
-	RuntimeError pack(TBuffer & buffer, const T & v);
-
-
 }
 
 #include "Packer.cpp"
-#include "PackerAdaptor.cpp"
 
 #endif
